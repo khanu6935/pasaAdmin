@@ -1,0 +1,69 @@
+import React, { useState } from "react";
+import { Button, Header, NotificationList } from "../../../components";
+import { Images } from "../../../assets";
+
+function Notification() {
+  return (
+    <div className="bg-primary">
+      <Header />
+      <div className="bg-primary lg:px-10 px-2 py-10 flex justify-between container m-auto">
+        <h3 className="text-textWhite font-semibold text-xl ">Notification</h3>
+        <Button title="Mark all as read" bgColor="#016BE6" />
+      </div>
+
+      <NotificationList
+        title="New Contact Form"
+        action="Submission"
+        view="Click to View"
+        icon={Images.sms}
+      />
+      <NotificationList
+        title="1 Blog in draft complete it to"
+        action="publish"
+        view="Click to View"
+        icon={Images.message}
+      />
+      <NotificationList
+        title="New Contact Form"
+        action="Submission"
+        view="Click to View"
+        icon={Images.sms}
+      />
+      <NotificationList
+        title="1 Blog in draft complete it to"
+        action="publish"
+        view="Click to View"
+        icon={Images.message}
+      />
+      <div className="lg:px-10 px-2 py-10">
+        <Button title="Yesterday" bgColor="#FFB800" />
+      </div>
+      <NotificationList
+        title="New Contact Form"
+        action="Submission"
+        view="Click to View"
+        icon={Images.sms}
+      />
+      <NotificationList
+        title="1 Blog in draft complete it to"
+        action="publish"
+        view="Click to View"
+        icon={Images.message}
+      />
+      <NotificationList
+        title="New Contact Form"
+        action="Submission"
+        view="Click to View"
+        icon={Images.sms}
+      />
+      <NotificationList
+        title="1 Blog in draft complete it to"
+        action="publish"
+        view="Click to View"
+        icon={Images.message}
+      />
+    </div>
+  );
+}
+
+export { Notification };
