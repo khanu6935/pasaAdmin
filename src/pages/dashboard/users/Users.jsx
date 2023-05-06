@@ -59,7 +59,7 @@ function Users() {
         >
           <PageHeader
             title="Players"
-            placeholder="Search User By Name, Id or email"
+            placeholder="Search User By Name , Id or email"
             dropDown="Player"
             filter="Filter"
           />
