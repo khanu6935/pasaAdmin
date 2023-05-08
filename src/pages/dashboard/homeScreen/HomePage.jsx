@@ -7,7 +7,6 @@ import { Header, NavBoxes } from "../../../components";
 export const ApexChart = () => {
   const [options, setOptions] = useState({
     chart: {
-      height: 300,
       type: "area",
       zoom: {
         enabled: false,
@@ -23,7 +22,6 @@ export const ApexChart = () => {
       curve: "straight",
     },
     title: {
-      text: "Product Trends by Month",
       align: "left",
     },
 
@@ -82,7 +80,7 @@ export const ApexChart = () => {
         options={options}
         series={series}
         type="line"
-        height={300}
+        height="516px"
       />
     </div>
   );
@@ -91,14 +89,14 @@ export const ApexChart = () => {
 function HomePage() {
   return (
     <>
-      <div className="bg-primary h-screen">
+      <div className="bg-primary h-screen flex flex-col">
         <Header />
 
-        <div className="bg-primary lg:px-10 px-0 py-10">
-          <h3 className="text-textWhite px-6 font-semibold text-xl">
+        <div className="bg-primary lg:px-10 px-0 py-10 flex-grow flex flex-col">
+          <h3 className="text-textWhite   font-semibold text-2xl">
             Statistics
           </h3>
-          <div className="flex justify-around gap-4 overflow-x-scroll lg:px-0 px-5 customClass w-full">
+          <div className="flex flex-wrap md:flex-nowrap   gap-4 overflow-x-scroll lg:px-0 px-5 customClass w-full">
             <NavBoxes
               title="Total Users"
               counts="50,002"
@@ -131,11 +129,14 @@ function HomePage() {
             />
           </div>
 
-          <div className="rounded-md" style={{ border: "2px solid #311A67" }}>
+          <div
+            className="rounded-md my-5 mx-5 lg:mx-0"
+            style={{ border: "2px solid #311A67", flexGrow: "1" }}
+          >
             <div>
               <h2>Users</h2>
             </div>
-            <div>
+            <div className=" px-2 h-[520px]">
               <ApexChart />
             </div>
           </div>
