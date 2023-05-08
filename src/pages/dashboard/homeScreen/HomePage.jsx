@@ -1,13 +1,12 @@
 import React, { useState } from "react";
-import { RxArrowTopRight } from "react-icons/rx";
 import ReactApexChart from "react-apexcharts";
-import { Link } from "react-router-dom";
 import { Header, NavBoxes } from "../../../components";
 
 import { renderToString } from "react-dom/server";
 
 import { DropdownMonths } from "../../../components/dropdowns/MonthlyFilterDropdown";
 import { DropdownUsers } from "../../../components/dropdowns/UsersDropdown";
+import { RxArrowTopRight } from "react-icons/rx";
 
 function Labelchart() {
   return (
@@ -108,10 +107,12 @@ function HomePage() {
   return (
     <>
       <div className="bg-primary h-screen flex flex-col">
-        <Header />
+        <div className="h-[7rem]">
+          <Header />
+        </div>
 
         <div className="bg-primary lg:px-10 px-0 py-10 flex-grow flex flex-col">
-          <h3 className="text-textWhite px-5   pb-5 sm:pb-0 lg:px-0  font-semibold text-2xl">
+          <h3 className="text-textWhite px-5   pb-5 sm:pb-0 lg:px-0  font-semibold text-2xl  font-[Barlow]">
             Statistics
           </h3>
           <div className="flex flex-wrap md:flex-nowrap   gap-4 overflow-x-scroll lg:px-0 px-5 customClass w-full">
