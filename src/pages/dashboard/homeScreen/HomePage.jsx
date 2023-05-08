@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-import { RxArrowTopRight } from "react-icons/rx";
 import ReactApexChart from "react-apexcharts";
-import { Link } from "react-router-dom";
 import { Header, NavBoxes } from "../../../components";
 
 export const ApexChart = () => {
@@ -92,10 +90,12 @@ function HomePage() {
   return (
     <>
       <div className="bg-primary h-screen">
-        <Header />
+        <div className="h-[7rem]">
+          <Header />
+        </div>
 
-        <div className="bg-primary lg:px-10 px-0 py-10">
-          <h3 className="text-textWhite px-6 font-semibold text-xl">
+        <div className="bg-primary lg:px-10 px-0 ">
+          <h3 className="text-textWhite px-6 font-semibold text-2xl font-[Barlow]">
             Statistics
           </h3>
           <div className="flex justify-around gap-4 overflow-x-scroll lg:px-0 px-5 customClass w-full">

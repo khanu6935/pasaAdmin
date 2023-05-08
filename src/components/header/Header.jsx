@@ -1,62 +1,84 @@
 import React from "react";
-import react, { useEffect, useState } from "react";
-import { FaRegUser, FaBlogger } from "react-icons/fa";
-import { FiSettings } from "react-icons/fi";
-import { SlDiamond } from "react-icons/sl";
-import { Link } from "react-router-dom";
-import { RxDashboard } from "react-icons/rx";
 import { Images } from "../../assets";
+import { SlDiamond } from "react-icons/sl";
+import { RxDashboard } from "react-icons/rx";
+import { FaRegUser, FaBlogger } from "react-icons/fa";
+import { AiOutlineMenu } from "react-icons/ai";
+import { FiSettings } from "react-icons/fi";
+import { GiCrossMark } from "react-icons/gi";
+import { Link, useLocation } from "react-router-dom";
 
 const Header = () => {
+  const [open, setopen] = React.useState(false);
   const links = [
-    { name: "Dashboard", link: "/home-page", icons: <RxDashboard /> },
-    { name: "Users", link: "/users", icons: <FaRegUser /> },
-    { name: "Blogs", link: "/blogs", icons: <FaBlogger /> },
-    { name: "Submissions", link: "/submission", icons: <FaBlogger /> },
-    { name: "Subscribers", link: "/subscribers", icons: <SlDiamond /> },
-    { name: "Settings", link: "/setting", icons: <FiSettings /> },
-    { name: "Logout", link: "", icons: <FiSettings /> },
+    { name: "Dashboard", link: "/home-page", icon: <RxDashboard /> },
+    { name: "Users", link: "/users", icons: Images.user },
+    { name: "Blogs", link: "/blogs", icons: Images.blogs },
+    { name: "Submissions", link: "/submission", icons: Images.submission },
+    { name: "Subscribers", link: "/subscribers", icon: <SlDiamond /> },
+    { name: "Settings", link: "/setting", icon: <FiSettings /> },
+    { name: "Logout", link: "", icons: Images.logout },
   ];
 
+  const location = useLocation();
+  const { pathname } = location;
+
   return (
-    <nav className="bg-secondry rounded-b-xl dark:bg-gray-900 px-10">
-      <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+    <div
+      className={`flex justify-around h-20 bg-secondry md:px-6 px-2 lg:rounded-b-3xl rounded-none duration-500 fixed lg:flex-nowrap flex-wrap top-0 w-full z-50 `}
+    >
+      <div className="flex lg:justify-center justify-start lg:items-center items-start lg:w-[20%] w-[90%] ">
         <img
           src={Images.pasa}
-          className="h-12 w-16 object-cover mr-3"
+          className="h-12 w-16 object-cover lg:mr-1 mr-0 lg:mt-0 md:mt-4 mt-[14px]"
           alt="pasa-Logo"
         />
+      </div>
 
-        <button
-          data-collapse-toggle="navbar-default"
-          type="button"
-          className="inline-flex items-center p-2 ml-3 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-          aria-controls="navbar-default"
-          aria-expanded="false"
+      <div className="flex w-full">
+        <div
+          onClick={() => setopen(!open)}
+          className="text-3xl text-white   absolute top-[1.8rem]  right-8 cursor-pointer lg:hidden block"
         >
-          <span className="sr-only">Open main menu</span>
-          <svg
-            className="w-6 h-6"
-            aria-hidden="true"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
-              clip-rule="evenodd"
-            ></path>
-          </svg>
-        </button>
-        <div className="hidden w-full md:block md:w-auto  " id="navbar-default">
-          <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-secondry md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-secondry dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+          {open ? (
+            <GiCrossMark color="white" />
+          ) : (
+            <AiOutlineMenu color="white" />
+          )}
+        </div>
+
+        <div
+          className={`flex lg:flex-row lg:space-y-0 space-y-4 absolute lg:static  flex-col  bg-secondry
+        py-4 w-full duration-500 transition-all ease-in ${
+          open ? "right-[0.5vw]  top-20 " : "right-[-170vw] top-[-20rem]"
+        }`}
+        >
+          <ul className="lg:flex lg:items-center lg:space-x-2 space-x-4 lg:space-y-0 space-y-4">
             {links.map((item) => {
+              const isActive = item.link === pathname;
               return (
-                <li className="block py-2 pl-3 pr-4 text-white bg-blue-700 rounded md:bg-transparent md:text-textWhite md:p-0 dark:text-white md:dark:text-blue-500">
-                  <Link to={item.link}>
-                    <span className="flex justify-center items-center gap-2">
-                      {item.icons}
+                <li
+                  key={item.name}
+                  className={`md:my-0 my-3 flex  min-w-fit px-2 py-1 rounded-2xl duration-500 text-textWhite font-bold ${
+                    isActive ? "bg-[#49279A]" : ""
+                  }`}
+                >
+                  <Link
+                    className={`flex justify-center items-center gap-1 ${
+                      isActive ? "bg-[#49279A]" : ""
+                    }`}
+                    to={item.link}
+                  >
+                    {item.icons ? (
+                      <img
+                        src={item.icons}
+                        alt={item.name}
+                        className="h-4 w-5 object-contain"
+                      />
+                    ) : (
+                      <span>{item.icon}</span>
+                    )}
+                    <span className="font-[Barlow] text-base font-normal">
                       {item.name}
                     </span>
                   </Link>
@@ -64,20 +86,20 @@ const Header = () => {
               );
             })}
           </ul>
-        </div>
-        <div>
-          <Link to="/notification">
-            <p className="h-12 w-12 rounded-full bg-[#183584] flex justify-center items-center">
-              <img
-                src={Images.notification}
-                alt="logo"
-                className="h-6 w-6 object-contain"
-              />
-            </p>
-          </Link>
+          <div className="lg:px-0 px-4 flex lg:justify-end justify-start lg:w-[16rem] w-full">
+            <Link to="/notification">
+              <p className="h-12 w-12 rounded-full bg-[#183584] flex justify-center items-center">
+                <img
+                  src={Images.notification}
+                  alt="logo"
+                  className="h-6 w-6 object-contain"
+                />
+              </p>
+            </Link>
+          </div>
         </div>
       </div>
-    </nav>
+    </div>
   );
 };
 
