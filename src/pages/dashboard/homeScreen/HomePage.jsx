@@ -2,10 +2,30 @@ import React, { useState } from "react";
 import ReactApexChart from "react-apexcharts";
 import { Header, NavBoxes } from "../../../components";
 
+import { renderToString } from "react-dom/server";
+
+import { DropdownMonths } from "../../../components/dropdowns/MonthlyFilterDropdown";
+import { DropdownUsers } from "../../../components/dropdowns/UsersDropdown";
+import { RxArrowTopRight } from "react-icons/rx";
+
+function Labelchart() {
+  return (
+    <div class="  w-[8.5rem] rounded-md bg-secondry px-4 py-3 text-white">
+      <p class="text-md">Users</p>
+      <div class="flex items-center space-x-1 text-xl font-bold">
+        <span>2500</span>
+        <span class="flex h-5 w-12 items-center justify-center rounded-2xl bg-yellow-500 px-3 text-center text-xs mr-2">
+          24
+          <RxArrowTopRight color="black" />
+        </span>
+      </div>
+    </div>
+  );
+}
+
 export const ApexChart = () => {
   const [options, setOptions] = useState({
     chart: {
-      height: 300,
       type: "area",
       zoom: {
         enabled: false,
@@ -21,7 +41,6 @@ export const ApexChart = () => {
       curve: "straight",
     },
     title: {
-      text: "Product Trends by Month",
       align: "left",
     },
 
@@ -52,9 +71,7 @@ export const ApexChart = () => {
     },
     tooltip: {
       custom: function (params) {
-        return `<div class="flex ">
-        hello world
-        </div>`;
+        return renderToString(<Labelchart />);
       },
     },
     markers: {
@@ -80,7 +97,7 @@ export const ApexChart = () => {
         options={options}
         series={series}
         type="line"
-        height={300}
+        height="516px"
       />
     </div>
   );
@@ -89,16 +106,16 @@ export const ApexChart = () => {
 function HomePage() {
   return (
     <>
-      <div className="bg-primary h-screen">
+      <div className="bg-primary h-screen flex flex-col">
         <div className="h-[7rem]">
           <Header />
         </div>
 
-        <div className="bg-primary lg:px-10 px-0 ">
-          <h3 className="text-textWhite px-6 font-semibold text-2xl font-[Barlow]">
+        <div className="bg-primary lg:px-10 px-0 py-10 flex-grow flex flex-col">
+          <h3 className="text-textWhite px-5   pb-5 sm:pb-0 lg:px-0  font-semibold text-2xl  font-[Barlow]">
             Statistics
           </h3>
-          <div className="flex justify-around gap-4 overflow-x-scroll lg:px-0 px-5 customClass w-full">
+          <div className="flex flex-wrap md:flex-nowrap   gap-4 overflow-x-scroll lg:px-0 px-5 customClass w-full">
             <NavBoxes
               title="Total Users"
               counts="50,002"
@@ -131,11 +148,18 @@ function HomePage() {
             />
           </div>
 
-          <div className="rounded-md" style={{ border: "2px solid #311A67" }}>
-            <div>
-              <h2>Users</h2>
+          <div
+            className="rounded-md my-5 mx-5 lg:mx-0"
+            style={{ border: "2px solid #311A67", flexGrow: "1" }}
+          >
+            <div className="px-5 py-5 flex justify-between items-center flex-wrap space-y-2 sm:space-y-0">
+              <h2 className="text-white text-2xl">Users</h2>
+              <div className="flex  space-x-4 ">
+                <DropdownUsers />
+                <DropdownMonths />
+              </div>
             </div>
-            <div>
+            <div className=" px-2 h-[520px]">
               <ApexChart />
             </div>
           </div>
