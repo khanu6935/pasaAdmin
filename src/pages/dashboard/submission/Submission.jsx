@@ -43,9 +43,11 @@ function Submission() {
     setCurrentPage(pageNumber);
   };
   return (
-    <div className="bg-primary">
-      <Header />
-      <div className="bg-primary lg:px-10 px-0 py-10">
+    <div className="bg-primary min-h-screen">
+      <div className="h-20">
+        <Header />
+      </div>
+      <div className="bg-primary container lg:px-10 px-0 py-10">
         <h3 className="text-textWhite px-6 font-semibold text-xl ">
           Submission
         </h3>

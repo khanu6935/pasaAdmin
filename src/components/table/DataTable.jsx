@@ -18,7 +18,7 @@ function DataTable({ bodyData, tableHeader, properties }) {
 
   return (
     <>
-      <table id="customers" className="w-full border-collapse font-[Barlow]">
+      <table id="customers" className="w-full border-collapse font-[Barlow] ]">
         <thead>
           <tr>
             {tableHeader.map((i) => {
