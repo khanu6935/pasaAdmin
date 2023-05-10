@@ -18,13 +18,13 @@ function DataTable({ bodyData, tableHeader, properties }) {
 
   return (
     <>
-      <table id="customers" className="w-full border-collapse">
+      <table id="customers" className="w-full border-collapse font-[Barlow]">
         <thead>
           <tr>
             {tableHeader.map((i) => {
               return (
                 <th
-                  className="bg-transparent text-white py-3 px-4 whitespace-nowrap"
+                  className="bg-transparent text-left text-white py-3 px-4 whitespace-nowrap"
                   key={i}
                 >
                   {i}
@@ -43,7 +43,23 @@ function DataTable({ bodyData, tableHeader, properties }) {
                       className="py-3 px-4 text-textWhite text-center whitespace-nowrap"
                       key={property}
                     >
-                      {item[property]}
+                      <div className="flex space-x-2">
+                        {property == "title" && (
+                          <div>
+                            <img src={Images.pasa} className="h-6 w-6" />
+                          </div>
+                        )}
+                        <div>{item[property]}</div>
+                        {property == "title" && (
+                          <div>
+                            <span
+                              class={`  text-xs font-medium mr-2 px-2.5 py-0.5 rounded bg-${item["statusColor"]} `}
+                            >
+                              {item["status"]}
+                            </span>
+                          </div>
+                        )}
+                      </div>
                     </td>
                   );
                 })}

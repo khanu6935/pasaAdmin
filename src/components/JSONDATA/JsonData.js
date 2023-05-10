@@ -100,79 +100,112 @@ export const BlogsData = [
   {
     id: "#12345",
     title: "Casino Trends 2023",
-    description: "Adam",
-    publish: "smith",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce lacinia mi tortor,",
+    "Published On": "April 20,2022",
     view: "view",
+    status: "Draft",
+    statusColor: "navyBlue",
   },
   {
     id: "#12345",
     title: "Casino Trends 2023",
-    description: "Adam",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce lacinia mi tortor,",
     publish: "smith",
     view: "view",
+    status: "published",
+    statusColor: "primaryYellow",
   },
   {
     id: "#12345",
     title: "Casino Trends 2023",
-    description: "Adam",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce lacinia mi tortor,",
     publish: "smith",
     view: "view",
+    status: "published",
+    statusColor: "primaryYellow",
   },
   {
     id: "#12345",
     title: "Casino Trends 2023",
-    description: "Adam",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce lacinia mi tortor,",
     publish: "smith",
     view: "view",
+    status: "published",
+    statusColor: "primaryYellow",
   },
   {
     id: "#12345",
     title: "Casino Trends 2023",
-    description: "Adam",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce lacinia mi tortor,",
     publish: "smith",
     view: "view",
+    status: "published",
+    statusColor: "primaryYellow",
   },
   {
     id: "#12345",
     title: "Casino Trends 2023",
-    description: "Adam",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce lacinia mi tortor,",
     publish: "smith",
     view: "view",
+    status: "published",
+    statusColor: "primaryYellow",
   },
   {
     id: "#12345",
     title: "Casino Trends 2023",
-    description: "Adam",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce lacinia mi tortor,",
     publish: "smith",
     view: "view",
+    status: "published",
+    statusColor: "primaryYellow",
   },
   {
     id: "#12345",
     title: "Casino Trends 2023",
-    description: "Adam",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce lacinia mi tortor,",
     publish: "smith",
     view: "view",
+    status: "published",
+    statusColor: "primaryYellow",
   },
   {
     id: "#12345",
     title: "Casino Trends 2023",
-    description: "Adam",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce lacinia mi tortor,",
     publish: "smith",
     view: "view",
+    status: "published",
+    statusColor: "primaryYellow",
   },
   {
     id: "#12345",
     title: "Casino Trends 2023",
-    description: "Adam",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce lacinia mi tortor,",
     publish: "smith",
     view: "view",
+    status: "published",
+    statusColor: "primaryYellow",
   },
   {
     id: "#12345",
     title: "Casino Trends 2023",
-    description: "Adam",
+    description:
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce lacinia mi tortor,",
     publish: "smith",
     view: "view",
+    status: "published",
+    statusColor: "primaryYellow",
   },
 ];
 export const SubscriberRowData = [

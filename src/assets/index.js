@@ -8,4 +8,5 @@ export const Images = {
   logout: require("./Icons/logout.png"),
   submission: require("./Icons/submission.png"),
   blogs: require("./Icons/blogs.png"),
+  cloud: require("./SVGS/cloud.svg"),
 };

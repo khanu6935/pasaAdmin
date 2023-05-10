@@ -1,11 +1,55 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
 #customers tr:nth-child(even) {
-    background-color: #26164B;
+  background-color: #26164b;
 }
 .customClass::-webkit-scrollbar {
-    display: none;
+  display: none;
 }
- 
- 
+
+.ql-toolbar {
+  background-color: #016be6;
+  color: #fff;
+}
+
+.ql-toolbar button {
+  color: #fff !important;
+}
+
+.ql-toolbar button:hover {
+  color: #fff !important;
+}
+
+.ql-header.ql-active,
+.ql-header:hover {
+  color: #fff !important;
+}
+
+.ql-header.ql-active .ql-stroke.ql-fill,
+.ql-header:hover .ql-stroke.ql-fill {
+  fill: #fff;
+}
+
+.ql-toolbar .ql-stroke {
+  fill: none !important;
+  stroke: #fff !important;
+}
+
+.ql-toolbar .ql-fill {
+  fill: #fff !important;
+  stroke: none !important;
+}
+
+.ql-toolbar .ql-picker {
+  color: #fff !important;
+}
+
+.ql-editor {
+  height: 641px !important;
+}
+
+.ql-toolbar {
+  @apply py-32 h-32 sm:h-24 flex-wrap flex items-center  rounded-t-2xl !border-secondry;
+}
+
+.ql-container {
+  @apply rounded-b-2xl !border-secondry;
+}

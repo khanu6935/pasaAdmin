@@ -10,5 +10,9 @@ export {
 export { DataTable } from "./table/DataTable";
 export { NotificationList } from "./notificationList/NotificationList";
 export { Button } from "./button/Button";
-export { InputFeild } from "./inputFeild/InputFeild";
+export {
+  InputFeild,
+  InputFieldWithCount,
+  TextAreaWithCount,
+} from "./inputFeild/InputFeild";
 export { Pagination } from "./pagination/Pagination";
