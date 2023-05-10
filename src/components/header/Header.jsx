@@ -25,9 +25,9 @@ const Header = () => {
 
   return (
     <div
-      className={`flex justify-around h-20 bg-secondry md:px-6 px-2 lg:rounded-b-3xl rounded-none duration-500 fixed lg:flex-nowrap flex-wrap top-0 w-full z-50 `}
+      className={`flex justify-around h-20 bg-secondry md:px-6 px-2 lg:rounded-b-3xl rounded-none duration-500  lg:flex-nowrap flex-wrap  w-full z-50 `}
     >
-      <div className="flex lg:justify-center justify-start lg:items-center items-start lg:w-[20%] w-[90%] ">
+      <div className="flex lg:justify-center container justify-start lg:items-center items-start lg:w-[20%] w-[90%] ">
         <img
           src={Images.pasa}
           className="h-12 w-16 object-cover lg:mr-1 mr-0 lg:mt-0 md:mt-4 mt-[14px]"
@@ -35,7 +35,7 @@ const Header = () => {
         />
       </div>
 
-      <div className="flex w-full">
+      <div className="flex container w-full">
         <div
           onClick={() => setopen(!open)}
           className="text-3xl text-white   absolute top-[1.8rem]  right-8 cursor-pointer lg:hidden block"

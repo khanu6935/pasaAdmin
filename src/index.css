@@ -7,5 +7,10 @@
 .customClass::-webkit-scrollbar {
     display: none;
 }
+
+.content-class{
+    min-width: 1440px;
+    margin: auto;
+}
  
  

@@ -11,7 +11,7 @@ function InputFeild({ placeholder, type, onChange, value }) {
       <input
         type={type}
         placeholder={placeholder}
-        className=" w-full p-4 rounded-lg outline-0 text-white bg-secondry pl-12"
+        className="w-full p-4 rounded-lg text-lg font-[Barlow] font-normal outline-0 text-white bg-secondry pl-12"
         onChange={onChange}
         value={value}
       />
