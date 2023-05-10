@@ -16,17 +16,17 @@ const PageHeader = ({ title, placeholder, dropDown, filter }) => {
           {title}
         </h4>
       </div>
-      <div className="flex lg:flex-row flex-col gap-3 relative bg-red-500 mx-2">
-        <div className="bg-secondry flex items-center w-[23rem]">
-          <button className="absolute lg:top-4 top-2 left-2">
-            <BiSearch color="white" />
+      <div className="flex lg:flex-row flex-col gap-3 relative  mx-2">
+        <div className="bg-secondry rounded-2xl flex items-center w-[23rem]">
+          <button className="pl-3 ">
+            <BiSearch color="white" size={20} />
           </button>
 
           <input
             type="text"
             id="input-group-1"
-            class="  border  outline-0 bg-secondry text-gray-900 text-sm rounded-lg  block w-full pl-10 p-2.5   "
-            placeholder="name@flowbite.com"
+            class="     outline-  bg-secondry   text-sm  rounded-2xl  block w-full pl-2 p-2.5   "
+            placeholder="Search Blog"
           />
         </div>
       </div>
