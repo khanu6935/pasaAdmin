@@ -11,10 +11,10 @@ import { RxArrowTopRight } from "react-icons/rx";
 function Labelchart() {
   return (
     <div class="  w-[8.5rem] rounded-md bg-secondry px-4 py-3 text-white">
-      <p class="text-md">Users</p>
+      <p class="text-md font-[Barlow]">Users</p>
       <div class="flex items-center space-x-1 text-xl font-bold">
-        <span>2500</span>
-        <span class="flex h-5 w-12 items-center justify-center rounded-2xl bg-yellow-500 px-3 text-center text-xs mr-2">
+        <span className="font-[Barlow]">2500</span>
+        <span class="flex h-5 w-12 items-center justify-center rounded-2xl bg-yellow-500 font-[Barlow] px-3 text-center text-xs mr-2">
           24
           <RxArrowTopRight color="black" />
         </span>
@@ -115,7 +115,7 @@ function HomePage() {
           <h3 className="text-textWhite px-5   pb-5 sm:pb-0 lg:px-0  font-semibold text-2xl  font-[Barlow]">
             Statistics
           </h3>
-          <div className="flex flex-wrap md:flex-nowrap   gap-4 overflow-x-scroll lg:px-0 px-5 customClass w-full">
+          <div className="flex flex-wrap md:flex-nowrap content-class  gap-4 overflow-x-scroll lg:px-0 px-5 customClass w-full">
             <NavBoxes
               title="Total Users"
               counts="50,002"
@@ -153,7 +153,7 @@ function HomePage() {
             style={{ border: "2px solid #311A67", flexGrow: "1" }}
           >
             <div className="px-5 py-5 flex justify-between items-center flex-wrap space-y-2 sm:space-y-0">
-              <h2 className="text-white text-2xl">Users</h2>
+              <h2 className="text-white text-2xl font-[Barlow]">Users</h2>
               <div className="flex  space-x-4 ">
                 <DropdownUsers />
                 <DropdownMonths />

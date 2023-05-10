@@ -53,3 +53,8 @@
 .ql-container {
   @apply rounded-b-2xl !border-secondry;
 }
+
+.content-class {
+  min-width: 1440px;
+  margin: auto;
+}
