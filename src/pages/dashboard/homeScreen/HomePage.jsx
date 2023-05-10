@@ -115,7 +115,7 @@ function HomePage() {
           <h3 className="text-textWhite px-5   pb-5 sm:pb-0 lg:px-0  font-semibold text-2xl  font-[Barlow]">
             Statistics
           </h3>
-          <div className="flex flex-wrap md:flex-nowrap content-class  gap-4 overflow-x-scroll lg:px-0 px-5 customClass w-full">
+          <div className="flex flex-wrap md:flex-nowrap    gap-4 overflow-x-scroll lg:px-0 px-5 customClass w-full">
             <NavBoxes
               title="Total Users"
               counts="50,002"

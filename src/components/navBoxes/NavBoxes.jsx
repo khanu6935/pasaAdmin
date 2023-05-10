@@ -4,7 +4,7 @@ import { RxArrowTopRight } from "react-icons/rx";
 const NavBoxes = ({ title, counts, ratio, duration }) => {
   return (
     <div
-      className="h-28 w-full bg-transparent rounded-md flex my-0 sm:my-6 justify-center pl-3 flex-col"
+      className="h-28 w-full max-w-[244px] bg-transparent rounded-md flex my-0 sm:my-6 justify-center pl-3 flex-col"
       style={{ border: "2px solid #311A67" }}
     >
       <p className="text-textWhite text-base font-normal font-[Barlow]">

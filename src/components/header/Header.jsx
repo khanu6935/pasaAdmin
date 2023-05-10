@@ -25,7 +25,7 @@ const Header = () => {
 
   return (
     <div
-      className={`flex justify-around h-20 bg-secondry md:px-6 px-2 lg:rounded-b-3xl rounded-none duration-500  lg:flex-nowrap flex-wrap  w-full z-50 `}
+      className={`flex justify-around h-20 bg-secondry md:px-6 px-2 lg:rounded-b-3xl rounded-none duration-500 fixed lg:flex-nowrap flex-wrap  w-full z-50 `}
     >
       <div className="flex lg:justify-center container justify-start lg:items-center items-start lg:w-[20%] w-[90%] ">
         <img

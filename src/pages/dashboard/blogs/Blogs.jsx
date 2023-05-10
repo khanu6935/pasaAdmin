@@ -21,11 +21,11 @@ function Blogs() {
     setCurrentPage(pageNumber);
   };
   return (
-    <div className="bg-primary min-h-screen flex- flex-col">
+    <div className="bg-primary min-h-screen flex flex-col">
       <div className="h-20">
         <Header />
       </div>
-      <div className="bg-primary lg:px-10 px-0 py-10">
+      <div className="bg-primary lg:px-10 h-full flex-grow px-0 py-10">
         <h3 className="text-textWhite px-6 font-semibold text-xl ">Blogs</h3>
         <div className="flex gap-4 overflow-x-scroll customClass w-full lg:px-4 px-6">
           <NavBoxes
