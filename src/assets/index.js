@@ -11,4 +11,7 @@ export const Images = {
   blogs: require("./Icons/blogs.png"),
   cloud: require("./SVGS/cloud.svg"),
   handshake: require("./Icons/handshake.png"),
+  casinoCover: require("./PNGS/CasinoCover.png"),
+  casinoImage1: require("./PNGS/casinogrid1.png"),
+  casinoImage2: require("./PNGS/casinogrid2.png"),
 };

@@ -2,6 +2,9 @@ import React from "react";
 import { useState } from "react";
 import { BiSearch, BiFilter } from "react-icons/bi";
 import { MdOutlineArrowDropDown } from "react-icons/md";
+import { DropdownMonths } from "../dropdowns/MonthlyFilterDropdown";
+import { PlayersDropdown } from "../dropdowns/PlayersDropdown";
+import { ChevronDown, ChevronDownIcon, ListFilter } from "lucide-react";
 
 const PageHeader = ({ title, placeholder, dropDown, filter }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -17,7 +20,7 @@ const PageHeader = ({ title, placeholder, dropDown, filter }) => {
         </h4>
       </div>
       <div className="flex lg:flex-row flex-col gap-3 relative  mx-2">
-        <div className="bg-secondry rounded-2xl flex items-center w-[23rem]">
+        <div className="bg-secondry rounded-2xl flex items-center sm:w-[23rem]">
           <button className="pl-3 ">
             <BiSearch color="white" size={20} />
           </button>
@@ -25,9 +28,15 @@ const PageHeader = ({ title, placeholder, dropDown, filter }) => {
           <input
             type="text"
             id="input-group-1"
-            class="     outline-  bg-secondry   text-sm  rounded-2xl  block w-full pl-2 p-2.5   "
+            class="outline-0  bg-secondry  text-white  text-sm  rounded-2xl  block w-full pl-2 p-2.5   "
             placeholder="Search Blog"
           />
+        </div>
+
+        <PlayersDropdown />
+        <div className="text-white items-center justify-between bg-navyBlue rounded-3xl px-4 py-2  cursor-pointer    flex">
+          <ListFilter size={20} />
+          <div className="px-2 font-semibold w-full">Filters</div>
         </div>
       </div>
     </div>

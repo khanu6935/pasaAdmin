@@ -11,6 +11,7 @@ import {
   Notification,
 } from "./pages";
 import CreateBlog from "./pages/dashboard/blogs/CreateBlog";
+import BlogDetail from "./pages/dashboard/blogs/BlogDetail";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
           <Route path="/setting" element={<Setting />} />
           <Route path="/notification" element={<Notification />} />
           <Route path="/create-blog" element={<CreateBlog />} />
+          <Route path="/blog-details/:id" element={<BlogDetail />} />
         </Routes>
       </BrowserRouter>
     </>

@@ -63,6 +63,8 @@ function DataTable({ bodyData, tableHeader, properties }) {
                     </td>
                   );
                 })}
+
+                <td className="text-white">View</td>
                 <td>
                   <img
                     src={Images.dropdown}
@@ -70,26 +72,6 @@ function DataTable({ bodyData, tableHeader, properties }) {
                     className="h-4 w-6 object-contain cursor-pointer"
                     onClick={() => handleDropdownClick(index)}
                   />
-                  {selected === index && (
-                    <div
-                      className={`${
-                        isDropdownOpen ? "" : "hidden"
-                      } absolute z-50 right-12 mt-1 py-2 w-40 bg-[#016BE6] rounded-md shadow-xl`}
-                    >
-                      <button href="#" className={dropDownStyle}>
-                        <p>Delete</p>
-                        <span>
-                          <MdOutlineDelete />
-                        </span>
-                      </button>
-                      <button href="#" className={dropDownStyle}>
-                        <p>Ban User</p>
-                        <span>
-                          <FaBan />
-                        </span>
-                      </button>
-                    </div>
-                  )}
                 </td>
               </tr>
             );

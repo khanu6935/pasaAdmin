@@ -11,7 +11,7 @@ import { GoPlus } from "react-icons/go";
 
 function Blogs() {
   const BlogHeader = ["Title", "Description", "Published On", "", ""];
-  const properties = ["title", "description", "Published On", "", "view"];
+  const properties = ["title", "description", "Published On", "", "View"];
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 7;
   const indexOfLastItem = currentPage * itemsPerPage;

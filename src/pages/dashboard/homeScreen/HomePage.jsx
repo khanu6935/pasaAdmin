@@ -64,6 +64,16 @@ export const ApexChart = () => {
         style: {
           fontSize: "12px",
         },
+        style: {
+          colors: "white",
+        },
+      },
+    },
+    yaxis: {
+      labels: {
+        style: {
+          colors: "white",
+        },
       },
     },
     grid: {
@@ -106,7 +116,7 @@ export const ApexChart = () => {
 function HomePage() {
   return (
     <>
-      <div className="bg-primary h-screen flex flex-col">
+      <div className="bg-primary min-h-screen  flex flex-col">
         <div>
           <Header />
         </div>

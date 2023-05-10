@@ -13,6 +13,7 @@ module.exports = {
     extend: {
       fontFamily: {
         barlow: ["Barlow", "sans-serif"],
+        roboto: ["Roboto", "sans-serif"],
       },
       colors: {
         border: "hsl(var(--border))",
