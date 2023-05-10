@@ -9,8 +9,8 @@ import {
 } from "../../../components";
 
 function Blogs() {
-  const BlogHeader = ["Title", "Description", "publish", "", ""];
-  const properties = ["title", "description", "publish", "view"];
+  const BlogHeader = ["Title", "Description", "Published On", "", ""];
+  const properties = ["title", "description", "Published On", "", "view"];
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 7;
   const indexOfLastItem = currentPage * itemsPerPage;
@@ -21,8 +21,10 @@ function Blogs() {
     setCurrentPage(pageNumber);
   };
   return (
-    <div className="bg-primary">
-      <Header />
+    <div className="bg-primary min-h-screen flex- flex-col">
+      <div className="h-20">
+        <Header />
+      </div>
       <div className="bg-primary lg:px-10 px-0 py-10">
         <h3 className="text-textWhite px-6 font-semibold text-xl ">Blogs</h3>
         <div className="flex gap-4 overflow-x-scroll customClass w-full lg:px-4 px-6">
@@ -36,7 +38,7 @@ function Blogs() {
           <NavBoxes title="Add new Blog" counts="" ratio="" duration="" />
         </div>
         <div
-          className="rounded-md flex flex-col"
+          className="rounded-t-md flex flex-col"
           style={{ border: "2px solid #311A67" }}
         >
           <PageHeader
@@ -46,8 +48,8 @@ function Blogs() {
             filter="Filter"
           />
         </div>
-        <div className="border-t-0 border-x-2 border-b-2 border-[#311A67]">
-          <div className="rounded-md overflow-x-auto">
+        <div className="border-t-0 flex-grow border-x-2 border-b-2 border-[#311A67]">
+          <div className="rounded-md overflow-x-auto flex-grow">
             <DataTable
               bodyData={currentItems}
               tableHeader={BlogHeader}
