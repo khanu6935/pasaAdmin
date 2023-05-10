@@ -16,56 +16,19 @@ const PageHeader = ({ title, placeholder, dropDown, filter }) => {
           {title}
         </h4>
       </div>
-      <div className="flex lg:flex-row flex-col gap-3 relative">
-        <button className="absolute lg:top-4 top-2 left-2">
-          <BiSearch color="white" />
-        </button>
-        <input
-          type="text"
-          placeholder={placeholder}
-          className="bg-secondry font-[Barlow] lg:w-96 w-[20rem] lg:p-1 p-2 rounded-2xl text-xs lg:pl-10 pl-8"
-        />
-        <div className="relative inline-block text-left">
-          <button
-            className="bg-[#016BE6] text-white font-bold lg:py-2 py-1 lg:px-6 px-0 lg:w-24 w-[12rem] rounded-3xl inline-flex items-center justify-center"
-            onClick={toggleMenu}
-          >
-            <span className="font-[Barlow]">{dropDown}</span>
-            <span>
-              <MdOutlineArrowDropDown size={30} />
-            </span>
+      <div className="flex lg:flex-row flex-col gap-3 relative bg-red-500 mx-2">
+        <div className="bg-secondry flex items-center w-[23rem]">
+          <button className="absolute lg:top-4 top-2 left-2">
+            <BiSearch color="white" />
           </button>
-          <div
-            className={`${
-              isOpen ? "" : "hidden"
-            } absolute z-50 right-0 mt-1 py-2 w-48 font-[Barlow] bg-secondry rounded-md shadow-xl`}
-          >
-            <a
-              href="#"
-              className="block px-4 py-2 text-textWhite font-[Barlow] hover:bg-primary"
-            >
-              Option 1
-            </a>
-            <a
-              href="#"
-              className="block px-4 py-2 text-textWhite font-[Barlow] hover:bg-primary"
-            >
-              Option 2
-            </a>
-            <a
-              href="#"
-              className="block px-4 py-2 text-textWhite font-[Barlow] hover:bg-primary"
-            >
-              Option 3
-            </a>
-          </div>
+
+          <input
+            type="text"
+            id="input-group-1"
+            class="  border  outline-0 bg-secondry text-gray-900 text-sm rounded-lg  block w-full pl-10 p-2.5   "
+            placeholder="name@flowbite.com"
+          />
         </div>
-        <button className="flex font-[Barlow] justify-center items-center bg-[#103179] lg:px-7 px-5 lg:w-[6rem] w-[12rem] py-1 rounded-3xl text-xl font-semibold text-textWhite">
-          <span>
-            <BiFilter color="white" size={30} />
-          </span>
-          {filter}
-        </button>
       </div>
     </div>
   );

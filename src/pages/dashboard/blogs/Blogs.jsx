@@ -22,7 +22,7 @@ function Blogs() {
     setCurrentPage(pageNumber);
   };
   return (
-    <div className="bg-primary min-h-screen flex- flex-col">
+    <div className="bg-primary min-h-screen flex flex-col">
       <div className="h-20">
         <Header />
       </div>

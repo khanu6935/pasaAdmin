@@ -59,6 +59,7 @@
   margin: auto;
 }
 
-tr {
-  max-height: 100px !important  ;
+table {
+  height: 0px; /*Set any facultative length value to Height (percentage value doesn't work)*/
+  min-height: 70vh;
 }
