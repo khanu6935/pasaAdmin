@@ -58,3 +58,7 @@
   min-width: 1440px;
   margin: auto;
 }
+
+tr {
+  max-height: 100px !important  ;
+}

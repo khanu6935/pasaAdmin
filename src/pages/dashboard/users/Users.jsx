@@ -29,10 +29,14 @@ function Users() {
   };
 
   return (
-    <div className="bg-primary">
-      <Header />
-      <div className="bg-primary lg:px-10 px-0 py-10">
-        <h3 className="text-textWhite px-6 font-semibold text-xl ">Users</h3>
+    <div className="bg-primary min-h-screen">
+      <div>
+        <Header />
+      </div>
+      <div className="bg-primary container lg:px-10 px-0 py-10">
+        <h3 className="text-textWhite mt-16  px-6 font-semibold text-xl ">
+          Users
+        </h3>
         <div className="flex gap-4 overflow-x-scroll customClass w-full lg:px-4 px-6">
           <NavBoxes
             title="Total Users"
@@ -64,7 +68,7 @@ function Users() {
             filter="Filter"
           />
         </div>
-        <div className="border-t-0 border-x-2 border-b-2 border-[#311A67]">
+        <div className="border-t-0 border-x-2 border-b-2   border-[#311A67]">
           <div className="rounded-md overflow-x-auto">
             <DataTable
               bodyData={currentItems}

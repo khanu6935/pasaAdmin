@@ -7,6 +7,7 @@ import {
   BlogsData,
   Pagination,
 } from "../../../components";
+import { GoPlus } from "react-icons/go";
 
 function Blogs() {
   const BlogHeader = ["Title", "Description", "Published On", "", ""];
@@ -25,7 +26,7 @@ function Blogs() {
       <div className="h-20">
         <Header />
       </div>
-      <div className="bg-primary lg:px-10 px-0 py-10">
+      <div className="bg-primary container lg:px-10 px-0 py-10">
         <h3 className="text-textWhite px-6 font-semibold text-xl ">Blogs</h3>
         <div className="flex gap-4 overflow-x-scroll customClass w-full lg:px-4 px-6">
           <NavBoxes
@@ -35,7 +36,7 @@ function Blogs() {
             duration="Overall"
           />
           <NavBoxes title="Blogs" counts="10" ratio="24" duration="Overall" />
-          <NavBoxes title="Add new Blog" counts="" ratio="" duration="" />
+          <NavBoxes createTitle="Create Blog" createBlog={true} />
         </div>
         <div
           className="rounded-t-md flex flex-col"
