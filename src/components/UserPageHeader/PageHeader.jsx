@@ -31,11 +31,11 @@ const PageHeader = ({ title, placeholder, dropDown, filter }) => {
           />
         </div>
 
-        <PlayersDropdown />
-        <div className="text-white items-center justify-between bg-navyBlue rounded-3xl px-4 py-2  cursor-pointer    flex">
+        {/* <PlayersDropdown /> */}
+        {/* <div className="text-white items-center justify-between bg-navyBlue rounded-3xl px-4 py-2  cursor-pointer    flex">
           <ListFilter size={20} />
           <div className="px-2 font-semibold w-full">Filters</div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

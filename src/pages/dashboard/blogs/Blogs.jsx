@@ -13,14 +13,6 @@ import { DataTable } from "../../../components/blogsGrid/data-table";
 import { columns } from "../../../components/blogsGrid/columns";
 
 function Blogs() {
-  const BlogHeader = ["Title", "Description", "Published On", "Action"];
-  const properties = ["title", "description", "publishedOn"];
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 7;
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = BlogsData.slice(indexOfFirstItem, indexOfLastItem);
-
   function getCurrentItem(currentItems) {
     while (currentItems.length < 7) {
       currentItems.push({});
@@ -38,9 +30,6 @@ function Blogs() {
     }
   });
 
-  const handlePageChange = (pageNumber) => {
-    setCurrentPage(pageNumber);
-  };
   return (
     <div className="bg-primary min-h-screen flex flex-col">
       <div className="h-20">

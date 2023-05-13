@@ -7,18 +7,18 @@ export const columns = [
     accessorKey: "id",
     header: "ID",
   },
-  {
-    accessorKey: "name",
-    header: "Name",
-  },
+  // {
+  //   accessorKey: "name",
+  //   header: "Name",
+  // },
   {
     accessorKey: "email",
     header: "Email",
   },
-  {
-    accessorKey: "phone",
-    header: "Phone",
-  },
+  // {
+  //   accessorKey: "phone",
+  //   header: "Phone",
+  // },
   {
     accessorKey: "date",
     header: "Date",

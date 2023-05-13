@@ -9,9 +9,6 @@ import {
 import { HiOutlineLockClosed } from "react-icons/hi";
 import { FiUser } from "react-icons/fi";
 import { BsTelephone } from "react-icons/bs";
-import { Images } from "../../../assets";
-import { BsEyeFill, BsFillEyeSlashFill } from "react-icons/bs";
-import { AiFillLock } from "react-icons/ai";
 
 function Setting() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -32,7 +29,7 @@ function Setting() {
     setChangePhone(false);
   };
   const setNewPaswword = (e) => {
-    setPaswword(e.target.value);
+    setConfirmNewPaswword(e.target.value);
   };
   const handleShow = (e) => {
     e.preventDefault();
@@ -105,7 +102,7 @@ function Setting() {
                 <InputPassword
                   password={newPassword}
                   showPassword={showPassword}
-                  handlePasswordChange={setConfirmNewPaswword}
+                  handlePasswordChange={setNewPaswword}
                   handleShow={handleShow}
                   placeholder="New Password"
                 />
