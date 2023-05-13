@@ -58,7 +58,16 @@ const ApexChart = () => {
         rotate: -45, // rotates the x-axis labels by -45 degrees
         style: {
           fontSize: "12px",
-          color: "white",
+        },
+        style: {
+          colors: "white",
+        },
+      },
+    },
+    yaxis: {
+      labels: {
+        style: {
+          colors: "white",
         },
       },
     },

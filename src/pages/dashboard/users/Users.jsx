@@ -7,37 +7,20 @@ import {
   DataTable,
   Pagination,
 } from "../../../components";
+import { UserTable } from "../../../components/userGrid/data-table";
+import { columns } from "../../../components/userGrid/columns";
 
 function Users() {
-  const userHeader = [
-    "ID",
-    "First Name",
-    "Last Name",
-    "Email",
-    "Phone",
-    "Join On",
-  ];
-  const properties = ["id", "fname", "lname", "email", "phone", "joinon"];
-  const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 7;
-  const indexOfLastItem = currentPage * itemsPerPage;
-  const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = UserRowData.slice(indexOfFirstItem, indexOfLastItem);
-
-  const handlePageChange = (pageNumber) => {
-    setCurrentPage(pageNumber);
-  };
-
   return (
     <div className="bg-primary min-h-screen">
       <div>
         <Header />
       </div>
       <div className="bg-primary container lg:px-10 px-0 py-10">
-        <h3 className="text-textWhite mt-16  px-6 font-semibold text-xl ">
+        <h3 className="text-textWhite mt-16  px-3 font-semibold text-[24px] font-[Barlow]">
           Users
         </h3>
-        <div className="flex gap-4 overflow-x-scroll customClass w-full lg:px-4 px-6">
+        <div className="flex gap-4 overflow-x-scroll customClass w-full lg:px-1 px-6">
           <NavBoxes
             title="Total Users"
             counts="1000"
@@ -70,23 +53,7 @@ function Users() {
         </div>
         <div className="border-t-0 border-x-2 border-b-2   border-[#311A67]">
           <div className="rounded-md overflow-x-auto">
-            <DataTable
-              bodyData={currentItems}
-              tableHeader={userHeader}
-              properties={properties}
-            />
-          </div>
-
-          <div className="px-10 py-4 flex justify-between">
-            <p className="text-textWhite font-semibold font-[Barlow]">
-              Showing {itemsPerPage} out of {UserRowData.length}
-            </p>
-            <Pagination
-              itemsPerPage={itemsPerPage}
-              totalItems={UserRowData.length}
-              currentPage={currentPage}
-              onPageChange={handlePageChange}
-            />
+            <UserTable columns={columns} data={UserRowData} />
           </div>
         </div>
       </div>

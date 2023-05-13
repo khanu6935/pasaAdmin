@@ -7,13 +7,15 @@ import {
 
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
+import { useNavigate } from "react-router-dom";
 
-function Button({ title, color }) {
+function Button({ title, color, ...props }) {
   return (
     <button
       className={`rounded-2xl text-white bg-${color} py-7 px-20 ${
         color == "navyBlue" ? "px-[6.6rem]" : ""
       } text-[20px] font-[Barlow]`}
+      {...props}
     >
       {title}
     </button>
@@ -72,6 +74,8 @@ export default function () {
   const [uploadedImages, setUploadedImages] = useState([]);
 
   const editorRef = useRef(null);
+
+  const navigate = useNavigate();
 
   const handleFileChange = (event) => {
     const selectedFile = event?.target.files && event?.target?.files[0];
@@ -149,7 +153,9 @@ export default function () {
 
   return (
     <div className="bg-primary font-[Barlow] min-h-screen h-full flex flex-col">
-      <Header />
+      <div className="h-20">
+        <Header />
+      </div>
 
       <div className="bg-primary lg:px-10 px-0 py-10 flex-grow flex flex-col">
         <h3 className="text-textWhite px-5   pb-5 sm:pb-0 lg:px-0  font-semibold text-2xl  font-[Barlow]">
@@ -214,7 +220,13 @@ export default function () {
 
           <div className="sm:space-x-8 space-y-5 sm:space-y-0 space-x-0 my-10">
             <Button title="Save as Draft" color="secondry" />
-            <Button title="Publish" color="navyBlue" />
+            <Button
+              title="Publish"
+              color="navyBlue"
+              onClick={() => {
+                navigate("/blog-details/1");
+              }}
+            />
           </div>
         </div>
       </div>

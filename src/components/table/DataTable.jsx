@@ -50,24 +50,26 @@ function DataTable({ bodyData, tableHeader, properties }) {
           </tr>
         </thead>
         <tbody>
+          {console.log(bodyData, properties)}
           {bodyData.map((item, index) => {
             return (
               <tr key={index}>
                 {properties.map((property) => {
                   return (
                     <td
-                      className="py-3 px-4 text-textWhite text-center whitespace-nowrap"
+                      className="py-3 px-4 text-textWhite text-left whitespace-nowrap"
                       key={property}
                       onClick={
                         properties === "message" ? handleModalOpen() : ""
                       }
                     >
                       <div className="flex space-x-2">
-                        {property == "title" && (
-                          <div>
-                            <img src={Images.pasa} className="h-6 w-6" />
-                          </div>
-                        )}
+                        {Object.keys(item).length > 0 &&
+                          property == "title" && (
+                            <div>
+                              <img src={item["image"]} className="h-6 w-6" />
+                            </div>
+                          )}
                         <div>{item[property]}</div>
                         {property == "title" && (
                           <div>

@@ -6,7 +6,7 @@ import { DropdownUsers } from "../../../components/dropdowns/UsersDropdown";
 function HomePage() {
   return (
     <>
-      <div className="bg-primary h-screen flex flex-col">
+      <div className="bg-primary min-h-screen  flex flex-col">
         <div>
           <Header />
         </div>
@@ -53,7 +53,9 @@ function HomePage() {
             style={{ border: "2px solid #311A67", flexGrow: "1" }}
           >
             <div className="px-5 py-5 flex justify-between items-center flex-wrap space-y-2 sm:space-y-0">
-              <h2 className="text-white text-2xl font-[Barlow]">Users</h2>
+              <h2 className="text-white text-2xl font-semibold font-[Barlow]">
+                Users
+              </h2>
               <div className="flex  space-x-4 ">
                 <DropdownUsers />
                 <DropdownMonths />

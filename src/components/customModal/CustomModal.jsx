@@ -19,7 +19,7 @@ function CustomModal({ openModal, closeModal, children }) {
             left: "auto",
             right: "auto",
             bottom: "auto",
-            minWidth: "500px",
+            minWidth: "600px",
             maxWidth: "864px",
             maxHeight: "80%",
             margin: "auto",
