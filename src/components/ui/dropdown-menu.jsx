@@ -1,6 +1,7 @@
 import * as React from "react";
 import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu";
 import { Check, ChevronRight, Circle } from "lucide-react";
+import * as icons from "lucide-react";
 
 import { cn } from "../../lib/utils";
 
@@ -82,26 +83,28 @@ const DropdownMenuItem = React.forwardRef(
 DropdownMenuItem.displayName = DropdownMenuPrimitive.Item.displayName;
 
 const DropdownMenuCheckboxItem = React.forwardRef(
-  ({ className, children, checked, ...props }, ref) => (
-    <DropdownMenuPrimitive.CheckboxItem
-      ref={ref}
-      className={cn(
-        "relative flex cursor-default select-none items-center   py-1.5  pl-2 pr-2 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
-        className
-      )}
-      checked={checked}
-      {...props}
-    >
-      {children}
-      {checked && (
-        <span className="absolute right-2 bg-yellow-200 rounded-[50%] flex h-3.5 w-3.5 items-center justify-center">
-          <DropdownMenuPrimitive.ItemIndicator>
-            <Check className="h-3 w-3" color="blue" />
-          </DropdownMenuPrimitive.ItemIndicator>
-        </span>
-      )}
-    </DropdownMenuPrimitive.CheckboxItem>
-  )
+  ({ className, children, icon = "Check", checked, ...props }, ref) => {
+    return (
+      <DropdownMenuPrimitive.CheckboxItem
+        ref={ref}
+        className={cn(
+          "relative flex cursor-default select-none items-center   py-1.5  pl-2 pr-2 text-sm outline-none transition-colors focus:bg-accent focus:text-accent-foreground data-[disabled]:pointer-events-none data-[disabled]:opacity-50",
+          className
+        )}
+        checked={checked}
+        {...props}
+      >
+        {children}
+        {checked && (
+          <span className="absolute right-2 bg-yellow-200 rounded-[50%] flex h-3.5 w-3.5 items-center justify-center">
+            <DropdownMenuPrimitive.ItemIndicator>
+              <Check className="h-3 w-3" color="blue" />
+            </DropdownMenuPrimitive.ItemIndicator>
+          </span>
+        )}
+      </DropdownMenuPrimitive.CheckboxItem>
+    );
+  }
 );
 DropdownMenuCheckboxItem.displayName =
   DropdownMenuPrimitive.CheckboxItem.displayName;

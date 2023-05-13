@@ -34,21 +34,23 @@ function DataTable({ bodyData, tableHeader, properties }) {
           </tr>
         </thead>
         <tbody>
+          {console.log(bodyData, properties)}
           {bodyData.map((item, index) => {
             return (
               <tr key={index}>
                 {properties.map((property) => {
                   return (
                     <td
-                      className="py-3 px-4 text-textWhite text-center whitespace-nowrap"
+                      className="py-3 px-4 text-textWhite text-left whitespace-nowrap"
                       key={property}
                     >
                       <div className="flex space-x-2">
-                        {property == "title" && (
-                          <div>
-                            <img src={Images.pasa} className="h-6 w-6" />
-                          </div>
-                        )}
+                        {Object.keys(item).length > 0 &&
+                          property == "title" && (
+                            <div>
+                              <img src={item["image"]} className="h-6 w-6" />
+                            </div>
+                          )}
                         <div>{item[property]}</div>
                         {property == "title" && (
                           <div>
@@ -64,15 +66,24 @@ function DataTable({ bodyData, tableHeader, properties }) {
                   );
                 })}
 
-                <td className="text-white">View</td>
-                <td>
-                  <img
-                    src={Images.dropdown}
-                    alt="drop"
-                    className="h-4 w-6 object-contain cursor-pointer"
-                    onClick={() => handleDropdownClick(index)}
-                  />
-                </td>
+                {Object.keys(item).length > 0 ? (
+                  <>
+                    <td className="text-white">View</td>
+                    <td>
+                      <img
+                        src={Images.dropdown}
+                        alt="drop"
+                        className="h-4 w-6 object-contain cursor-pointer"
+                        onClick={() => handleDropdownClick(index)}
+                      />
+                    </td>
+                  </>
+                ) : (
+                  <>
+                    <td></td>
+                    <td></td>
+                  </>
+                )}
               </tr>
             );
           })}
