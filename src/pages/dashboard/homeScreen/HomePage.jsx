@@ -17,16 +17,10 @@ function HomePage() {
           </h3>
           <div className="flex flex-wrap md:flex-nowrap  gap-4  lg:px-0 px-5  w-full">
             <NavBoxes
-              title="Total Users"
+              title="Contact Submissions"
               counts="50,002"
               ratio="24"
               duration="Overall"
-            />
-            <NavBoxes
-              title="New Distributors"
-              counts="500"
-              ratio="24"
-              duration="Last 3 Months"
             />
             <NavBoxes
               title="Subscribers"

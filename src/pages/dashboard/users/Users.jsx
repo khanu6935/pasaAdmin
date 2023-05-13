@@ -22,12 +22,6 @@ function Users() {
         </h3>
         <div className="flex gap-4 overflow-x-scroll customClass w-full lg:px-1 px-6">
           <NavBoxes
-            title="Total Users"
-            counts="1000"
-            ratio="24"
-            duration="Overall"
-          />
-          <NavBoxes
             title="Total Distributors"
             counts="500"
             ratio="24"

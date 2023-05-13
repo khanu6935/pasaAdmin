@@ -21,7 +21,7 @@ const Header = () => {
 
   const links = [
     { name: "Dashboard", link: "/home-page", icon: <RxDashboard /> },
-    { name: "Users", link: "/users", icons: Images.user },
+    { name: "Signups", link: "/users", icons: Images.user },
     { name: "Blogs", link: "/blogs", icons: Images.blogs },
     { name: "Submissions", link: "/submission", icons: Images.submission },
     { name: "Subscribers", link: "/subscribers", icon: <SlDiamond /> },
@@ -40,17 +40,17 @@ const Header = () => {
   return (
     <>
       <div
-        className={`flex justify-around h-20 bg-secondry md:px-6 px-2 lg:rounded-b-3xl rounded-none duration-500 fixed lg:flex-nowrap flex-wrap  w-full z-50 `}
+        className={`flex justify-around py-4 bg-secondry lg:px-6 px-2 lg:rounded-b-3xl rounded-none duration-500 fixed lg:flex-nowrap flex-wrap  w-full z-50 `}
       >
-        <div className="flex lg:justify-center container justify-start lg:items-center items-start lg:w-[20%] w-[90%] ">
+        <div className="flex container justify-start lg:items-center items-start lg:w-[10%] w-[100%] ">
           <img
             src={Images.pasa}
-            className="h-12 w-16 object-cover lg:mr-1 mr-0 lg:mt-0 md:mt-4 mt-[14px]"
+            className="h-16 w-20 object-contain lg:mr-1 mr-0 lg:mt-0 md:mt-4 mt-[14px]"
             alt="pasa-Logo"
           />
         </div>
 
-        <div className="flex container w-full">
+        <div className="flex  container w-[100%]">
           <div
             onClick={() => setopen(!open)}
             className="text-3xl text-white   absolute top-[1.8rem]  right-8 cursor-pointer lg:hidden block"
@@ -75,20 +75,21 @@ const Header = () => {
             </div>
 
             <div
-              className={`flex lg:flex-row lg:space-y-0 space-y-4 absolute lg:static  flex-col  bg-secondry
+              className={`flex lg:flex-row justify-center lg:space-y-0 space-y-4 absolute lg:static bg-secondry  flex-col  
         py-4 w-full duration-500 transition-all ease-in ${
           open ? "right-[0.5vw]  top-20 " : "right-[-170vw] top-[-20rem]"
         }`}
             >
-              <ul className="lg:flex lg:items-center lg:space-x-2 space-x-4 lg:space-y-0 space-y-4">
+              <ul className="lg:flex lg:items-center space-x-6">
                 {links.map((item) => {
                   const isActive = item.link === pathname;
                   return (
                     <li
                       key={item.name}
-                      className={`md:my-0 my-3 flex  min-w-fit px-2 py-1 rounded-2xl duration-500 text-textWhite font-bold ${
+                      className={`md:my-0 my-3  flex min-w-fit px-2 py-1 rounded-2xl duration-500 text-textWhite font-bold ${
                         isActive ? "bg-[#49279A]" : ""
                       }`}
+                      onClick={item.onClick}
                     >
                       <Link
                         onClick={item.onClick}
@@ -114,7 +115,7 @@ const Header = () => {
                   );
                 })}
               </ul>
-              <div className="lg:px-0 px-4 flex lg:justify-end justify-start lg:w-[16rem] w-full">
+              <div className="lg:px-0 px-4 lg:hidden block  lg:justify-end justify-start lg:w-[16rem] w-full">
                 <Link to="/notification">
                   <p className="h-12 w-12 rounded-full bg-[#183584] flex justify-center items-center">
                     <img
@@ -126,6 +127,20 @@ const Header = () => {
                 </Link>
               </div>
             </div>
+          </div>
+          <div className="lg:px-0 px-4 lg:block hidden  w-[10%]  lg:justify-end justify-start">
+            <Link
+              to="/notification"
+              className="h-full flex justify-end items-center"
+            >
+              <p className="h-12 w-12 rounded-full bg-[#183584] flex justify-center items-center">
+                <img
+                  src={Images.notification}
+                  alt="logo"
+                  className="h-6 w-6 object-contain"
+                />
+              </p>
+            </Link>
           </div>
         </div>
       </div>

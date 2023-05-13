@@ -19,14 +19,7 @@ function Submission() {
           Submission
         </h3>
         <div className="flex gap-4 overflow-x-scroll customClass w-full lg:px-1 px-6">
-        <NavBoxes
-            title="Total Blogs"
-            counts="1000"
-            ratio="24"
-            duration="Overall"
-          />
-          <NavBoxes title="Blogs" counts="10" ratio="24" duration="Overall" />
-          
+          <NavBoxes title="Contacts" counts="1000" showIcon={false} />
         </div>
         <div
           className="rounded-md z-0 flex flex-col"
