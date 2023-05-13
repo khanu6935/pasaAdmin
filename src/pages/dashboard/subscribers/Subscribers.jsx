@@ -33,9 +33,13 @@ function Subscribers() {
           Subscribers
         </h3>
         <div className="flex gap-4 overflow-x-scroll customClass w-full lg:px-4 px-6">
-          <NavBoxes />
-          <NavBoxes />
-          <NavBoxes />
+        <NavBoxes
+            title="Total Blogs"
+            counts="1000"
+            ratio="24"
+            duration="Overall"
+          />
+          <NavBoxes title="Blogs" counts="10" ratio="24" duration="Overall" />
         </div>
         <div
           className="rounded-md flex flex-col"
