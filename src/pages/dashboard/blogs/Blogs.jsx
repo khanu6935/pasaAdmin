@@ -47,8 +47,10 @@ function Blogs() {
         <Header />
       </div>
       <div className="bg-primary container lg:px-10 px-0 py-10">
-        <h3 className="text-textWhite px-6 font-semibold text-xl ">Blogs</h3>
-        <div className="flex gap-4 overflow-x-scroll customClass w-full lg:px-4 px-6">
+        <h3 className="text-textWhite px-3 font-semibold text-[24px] font-[Barlow]">
+          Blogs
+        </h3>
+        <div className="flex gap-4 overflow-x-scroll customClass w-full lg:px-1 px-6">
           <NavBoxes
             title="Total Blogs"
             counts="1000"
@@ -63,8 +65,8 @@ function Blogs() {
           style={{ border: "2px solid #311A67" }}
         >
           <PageHeader
-            title="Players"
-            placeholder="Search User By Name, Id or email"
+            title="Blogs"
+            placeholder="Search Blog"
             dropDown="Player"
             filter="Filter"
           />

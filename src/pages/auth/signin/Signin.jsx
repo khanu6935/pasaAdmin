@@ -1,7 +1,7 @@
 import React from "react";
 import { Images } from "../../../assets";
 import { MdEmail } from "react-icons/md";
-import { Button, InputFeild } from "../../../components";
+import { Button, InputFeild, InputPassword } from "../../../components";
 import { useState } from "react";
 import { AiFillLock } from "react-icons/ai";
 import { BsEyeFill, BsFillEyeSlashFill } from "react-icons/bs";
@@ -74,30 +74,16 @@ function Signin() {
                   placeholder="Enter email"
                   type="text"
                   value={email}
+                  showIcon={true}
                   onChange={(e) => handleEmailChange(e)}
                 />
-                <div className="relative my-2">
-                  <span className="absolute left-3 top-4">
-                    <AiFillLock size={28} color="#016BE6" />
-                  </span>
-                  <button
-                    onClick={(e) => handleShow(e)}
-                    className="absolute right-4 top-4"
-                  >
-                    {showPassword ? (
-                      <BsEyeFill size={24} color="white" />
-                    ) : (
-                      <BsFillEyeSlashFill size={24} color="white" />
-                    )}
-                  </button>
-                  <input
-                    type={showPassword ? "text" : "password"}
-                    placeholder="Enter password"
-                    className=" w-full text-white text-lg font-[Barlow] font-normal  p-4 rounded-lg bg-secondry pl-12 outline-0"
-                    value={password}
-                    onChange={(e) => handlePasswordChange(e)}
-                  />
-                </div>
+                <InputPassword
+                  password={password}
+                  showPassword={showPassword}
+                  handlePasswordChange={handlePasswordChange}
+                  handleShow={handleShow}
+                  placeholder="Enter Password"
+                />
 
                 <div className="flex justify-end">
                   <p className="text-[#FFB800] font-[Barlow]">

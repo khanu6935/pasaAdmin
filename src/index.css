@@ -63,3 +63,56 @@ table {
   height: 0px; /*Set any facultative length value to Height (percentage value doesn't work)*/
   min-height: 70vh;
 }
+.ReactModal__Overlay{
+      background-color: rgba(25, 25, 25, 0.75) !important;
+}
+
+
+@media (min-width: 768px) {
+.ReactModal__Content {
+    position: relative;
+    inset: auto;
+    border: 2px solid #016BE6 !important;
+    background: #01152D !important;
+    overflow: auto;
+    border-radius: 8px !important;
+    padding: 20px;
+    max-width: 864px !important;
+    max-height: 80%;
+    margin: auto;
+    color: white !important;
+  }
+}
+
+@media (min-width: 640px) {
+.ReactModal__Content {
+    position: relative;
+    inset: auto;
+    border: 2px solid #016BE6 !important;
+    background: #01152D !important;
+    overflow: auto;
+    border-radius: 8px !important;
+    padding: 20px;
+    max-width: 40% !important;
+    max-height: 80%;
+    margin: auto;
+    color: white !important;
+  }
+}
+
+@media (max-width: 640px) {
+.ReactModal__Content {
+    position: relative;
+    inset: auto;
+    border: 2px solid #016BE6 !important;
+    background: #01152D !important;
+    overflow: auto;
+    border-radius: 8px !important;
+    padding: 20px;
+    min-width: 350px !important;
+    max-width: 40% !important;
+    max-height: 80%;
+    margin: auto;
+    color: white !important;
+  }
+}
