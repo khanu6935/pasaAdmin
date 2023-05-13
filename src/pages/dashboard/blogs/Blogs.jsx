@@ -73,7 +73,7 @@ function Blogs() {
         </div>
         <div className="border-t-0 flex-grow border-x-2 border-b-2 border-[#311A67]">
           <div className="rounded-md overflow-x-auto flex-grow">
-            <DataTable columns={columns} data={BlogsData} />
+            <DataTable columns={columns} data={data ?? []} />
           </div>
         </div>
       </div>

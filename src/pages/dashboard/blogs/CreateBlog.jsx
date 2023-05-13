@@ -8,6 +8,10 @@ import {
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { useNavigate } from "react-router-dom";
+import { useFormik } from "formik";
+import * as Yup from "yup";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { axios } from "../../../lib/axios";
 
 function Button({ title, color, ...props }) {
   return (
@@ -67,15 +71,65 @@ function UploadButton({ coverImage, handleFileChange, previewURL }) {
 }
 
 export default function () {
-  const [text, setText] = useState("");
+  const navigate = useNavigate();
+  const queryClient = useQueryClient();
+
   const [coverImage, setCoverImage] = useState(null);
   const [previewURL, setPreviewURL] = useState(null);
   const [value, setValue] = useState("");
-  const [uploadedImages, setUploadedImages] = useState([]);
+
+  const createBlogMutation = useMutation(
+    async (newBlog) => {
+      const response = await axios.post("/blogs", newBlog);
+
+      if (!response.ok) {
+        throw new Error("Error creating blog post");
+      }
+
+      return response.json();
+    },
+    {
+      onSuccess: () => {
+        navigate("/blogs");
+        queryClient.invalidateQueries(["blogs"]);
+        // Replace 'blogs' with the name of the query that should be invalidated
+        // when the mutation is successful
+      },
+    }
+  );
+  const blogSchema = Yup.object().shape({
+    title: Yup.string()
+      .min(2, "Too Short!")
+      .max(50, "Too Long!")
+      .required("Required"),
+    description: Yup.string()
+      .min(2, "Too Short!")
+      .max(150, "Too Long!")
+      .required("Required"),
+  });
+
+  const formik = useFormik({
+    initialValues: {
+      title: "",
+      description: "",
+    },
+    validationSchema: blogSchema,
+    onSubmit: (values) => {
+      const formData = new FormData();
+
+      if (!coverImage) alert("Cover Image is Required");
+
+      formData.append("title", values.title);
+      formData.append("description", values.description);
+      formData.append("image", coverImage);
+      formData.append("richText", value);
+      formData.append("publishedOn", new Date());
+
+      createBlogMutation.mutate(formData);
+    },
+  });
 
   const editorRef = useRef(null);
-
-  const navigate = useNavigate();
 
   const handleFileChange = (event) => {
     const selectedFile = event?.target.files && event?.target?.files[0];
@@ -90,42 +144,12 @@ export default function () {
     } else {
     }
     if (selectedFile) {
-      console.log(
-        "url",
-        URL.createObjectURL(selectedFile),
-        typeof URL.createObjectURL(selectedFile)
-      );
       setPreviewURL(URL.createObjectURL(selectedFile));
       setCoverImage(selectedFile);
     }
   };
 
-  function imageHandler() {
-    const input = document.createElement("input");
-
-    input.setAttribute("type", "file");
-    input.setAttribute("accept", "image/*");
-    input.click();
-
-    input.onchange = async () => {
-      var file = input.files[0];
-
-      if (file) {
-        const reader = new FileReader();
-        reader.readAsDataURL(file);
-        reader.onload = () => {
-          // Add the data URL to the uploaded images array
-          setUploadedImages([...uploadedImages, reader.result]);
-
-          // Insert the uploaded image into the editor
-
-          console.log(editorRef.current.getEditor().insertEmbed());
-          const range = editorRef?.current?.getEditor()?.getSelection(true);
-          editorRef.current.getEditor().insertEmbed(range.index, reader.result);
-        };
-      }
-    };
-  }
+  console.log({ coverImage });
 
   const modules = useMemo(() => {
     return {
@@ -143,10 +167,6 @@ export default function () {
           ["link", "image", "video"],
           ["clean"],
         ],
-        // handlers: {
-        //   image: imageHandler,
-        //   base64: false,
-        // },
       },
     };
   }, []);
@@ -161,14 +181,18 @@ export default function () {
         <h3 className="text-textWhite px-5   pb-5 sm:pb-0 lg:px-0  font-semibold text-2xl  font-[Barlow]">
           Create New Blog
         </h3>
-
         <div className="rounded-md my-5 mx-5 lg:mx-0">
           <div className="w-full sm:w-[90%]">
             <InputFieldWithCount
               type="textarea"
-              rows={10}
-              onChange={(e) => setText(e.target.value)}
+              onChange={formik.handleChange}
+              value={formik.values.title}
               maxLength={60}
+              name="title"
+              id="title"
+              onBlur={formik.handleBlur}
+              hasError={formik.errors.title && formik.touched.title}
+              error={formik.errors.title}
               placeholder={"Enter Blog Title"}
               inputClass="py-5 place placeholder-white opacity-80 !placeholder-opacity-80 font-[Barlow] !px-2 !py-7"
             />
@@ -177,9 +201,14 @@ export default function () {
             <TextAreaWithCount
               type="textarea"
               rows={6}
-              value={text}
-              onChange={(e) => setText(e.target.value)}
+              name="description"
+              id="description"
+              onChange={formik.handleChange}
+              value={formik.values.description}
               maxLength={60}
+              hasError={formik.errors.description && formik.touched.description}
+              onBlur={formik.handleBlur}
+              error={formik.errors.description}
               placeholder={"Enter Blog Title"}
               inputClass="py-5 place placeholder-white opacity-80 !placeholder-opacity-80  !font-[Barlow] !px-2 !py-7"
             />
@@ -224,7 +253,7 @@ export default function () {
               title="Publish"
               color="navyBlue"
               onClick={() => {
-                navigate("/blog-details/1");
+                formik.submitForm();
               }}
             />
           </div>
