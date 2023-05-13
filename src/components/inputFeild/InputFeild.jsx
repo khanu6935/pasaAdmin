@@ -1,12 +1,16 @@
 import React from "react";
+import { AiFillLock } from "react-icons/ai";
 import { MdEmail } from "react-icons/md";
+import { BsEyeFill, BsFillEyeSlashFill } from "react-icons/bs";
 
-function InputFeild({ placeholder, type, onChange, value }) {
+function InputFeild({ placeholder, type, onChange, value, showIcon }) {
   return (
     <div className="relative my-2">
-      <span className="absolute left-3 top-4">
-        <MdEmail size={28} color="#016BE6" />
-      </span>
+      {showIcon && (
+        <span className="absolute left-3 top-4">
+          <MdEmail size={28} color="#016BE6" />
+        </span>
+      )}
 
       <input
         type={type}
@@ -73,4 +77,36 @@ function TextAreaWithCount({
   );
 }
 
-export { InputFeild, InputFieldWithCount, TextAreaWithCount };
+function InputPassword({
+  password,
+  showPassword,
+  handlePasswordChange,
+  placeholder,
+  handleShow,
+  ...props
+}) {
+  return (
+    <div className="relative my-2">
+      <span className="absolute left-3 top-4">
+        <AiFillLock size={28} color="#016BE6" />
+      </span>
+      <button onClick={(e) => handleShow(e)} className="absolute right-4 top-4">
+        {showPassword ? (
+          <BsEyeFill size={24} color="white" />
+        ) : (
+          <BsFillEyeSlashFill size={24} color="white" />
+        )}
+      </button>
+      <input
+        type={showPassword ? "text" : "password"}
+        placeholder={placeholder}
+        className=" w-full text-white text-lg font-[Barlow] font-normal  p-4 rounded-lg bg-secondry pl-12 outline-0"
+        value={password}
+        onChange={(e) => handlePasswordChange(e)}
+        {...props}
+      />
+    </div>
+  );
+}
+
+export { InputFeild, InputFieldWithCount, TextAreaWithCount, InputPassword };

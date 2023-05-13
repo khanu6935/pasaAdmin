@@ -14,5 +14,9 @@ export {
   InputFeild,
   InputFieldWithCount,
   TextAreaWithCount,
+  InputPassword,
 } from "./inputFeild/InputFeild";
 export { Pagination } from "./pagination/Pagination";
+export { ApexChart } from "./appexChart/ApexChart";
+export { CustomModal } from "./customModal/CustomModal";
+export { HeaderModal } from "./headerModal/HeaderModal";
