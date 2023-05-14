@@ -45,14 +45,14 @@ function Setting() {
 
   return (
     <div className="bg-primary min-h-screen">
-      <div className="h-20">
+      <div>
         <Header />
       </div>
-      <div className="bg-primary conatiner lg:px-10  px-0 py-10 h-screen">
-        <h3 className="text-textWhite container px-6 font-semibold font-[Barlow] text-2xl ">
+      <div className="bg-primary lg:px-10 px-0 lg:py-0 py-10 flex-grow flex flex-col">
+        <h3 className="text-textWhite px-5 lg:mt-9 mt-20 pb-5 sm:pb-0 lg:px-0  font-semibold text-2xl  font-[Barlow]">
           Setting
         </h3>
-        <div className="border-2 border-[#311A67] container rounded-md mt-8">
+        <div className="border-2 border-[#311A67]  rounded-md mt-8">
           <div className="border-b-2 border-[#311A67] h-16 flex items-center px-4">
             <p className="text-textWhite font-medium font-[Barlow] text-xl">
               Security

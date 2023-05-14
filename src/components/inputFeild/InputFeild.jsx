@@ -86,15 +86,15 @@ function InputPassword({
   ...props
 }) {
   return (
-    <div className="relative my-2">
+    <div className="relative my-3">
       <span className="absolute left-3 top-4">
         <AiFillLock size={28} color="#016BE6" />
       </span>
-      <button onClick={(e) => handleShow(e)} className="absolute right-4 top-4">
+      <button onClick={(e) => handleShow(e)} className="absolute right-4 top-5">
         {showPassword ? (
-          <BsEyeFill size={24} color="white" />
+          <BsEyeFill height={18} width={20} color="white" />
         ) : (
-          <BsFillEyeSlashFill size={24} color="white" />
+          <BsFillEyeSlashFill height={18} width={20} color="white" />
         )}
       </button>
       <input

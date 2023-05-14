@@ -8,11 +8,11 @@ function Notification() {
       <div className="h-20">
         <Header />
       </div>
-      <div className="bg-primary lg:px-10 px-2 py-10 flex justify-between container m-auto">
+      <div className="bg-primary lg:px-6 px-2 py-6 flex justify-between ">
         <h3 className="text-textWhite font-semibold text-xl ">Notification</h3>
         <Button title="Mark all as read" bgColor="#016BE6" />
       </div>
-      <div className="container">
+      <div className="">
         <NotificationList
           title="New Contact Form"
           action="Submission"

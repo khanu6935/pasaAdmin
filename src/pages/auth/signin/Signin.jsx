@@ -45,31 +45,33 @@ function Signin() {
   return (
     <>
       <div className="bg-primary  flex min-h-screen relative">
-        <div className="w-full flex justify-center container items-center">
-          <div className=" flex justify-center">
+        <div className="w-full flex justify-center items-center">
+          <div className=" flex justify-center lg:w-[30%] md:w-[70%] w-full">
             <div className="w-[100%] flex flex-col items-center ">
-              <form className="w-full lg:px-0 px-5" onSubmit={handleSubmit}>
-                <div className=" flex justify-center">
+              <div className=" flex justify-center">
+                <img
+                  src={Images.pasa}
+                  alt="pasa"
+                  className="h-24 w-32 object-contain flex justify-center"
+                />
+              </div>
+              <div className="flex flex-col">
+                <h3 className="text-textWhite text-center flex justify-center items-center gap-2 py-4 font-bold lg:text-4xl text-3xl font-[Barlow]">
+                  WELCOME ADMIN
                   <img
-                    src={Images.pasa}
-                    alt="pasa"
-                    className="h-24 w-32 object-contain flex justify-center"
+                    src={Images.handshake}
+                    alt="hand"
+                    className="h-10 w-10 object-contain"
                   />
-                </div>
-                <div className="flex flex-col">
-                  <h3 className="text-textWhite text-center flex justify-center items-center gap-2 py-4 font-bold lg:text-4xl text-3xl font-[Barlow]">
-                    WELCOME ADMIN
-                    <img
-                      src={Images.handshake}
-                      alt="hand"
-                      className="h-10 w-10 object-contain"
-                    />
-                  </h3>
-                  <p className="text-textWhite pb-4  font-[Barlow] text-center text-sm font-normal">
-                    Login to continue to dashboard
-                  </p>
-                </div>
-
+                </h3>
+                <p className="text-textWhite pb-4  font-[Barlow] text-center text-sm font-normal">
+                  Login to continue to dashboard
+                </p>
+              </div>
+              <form
+                className="w-full lg:pt-8 pt-6 lg:px-0 px-5"
+                onSubmit={handleSubmit}
+              >
                 <InputFeild
                   placeholder="Enter email"
                   type="text"
@@ -96,9 +98,9 @@ function Signin() {
                     type="submit"
                     className={`${
                       disableButon
-                        ? "bg-secondry text-[#535E89]"
+                        ? "bg-[#14225D] text-[#535E89]"
                         : "bg-[#016BE6] text-textWhite"
-                    } w-full py-4 rounded-md  font-medium font-[Barlow]`}
+                    } w-full py-4 rounded-md  font-medium font-[Barlow] text-xl`}
                   >
                     Login
                   </button>
@@ -112,7 +114,7 @@ function Signin() {
         <img
           src={Images.diamonds}
           alt="diamonds"
-          className="lg:[16rem] lg:w-[16rem] md:h-[15rem] md-w-[15rem] h-[10.5rem] w-[10.5rem]   absolute bottom-0 right-0  object-contain"
+          className="lg:[16rem] lg:w-[13rem] md:h-[13rem] md:w-[13rem] h-[6.5rem] w-[6.5rem]   absolute bottom-0 right-0  object-contain"
         />
       </div>
     </>

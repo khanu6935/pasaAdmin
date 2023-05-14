@@ -40,12 +40,12 @@ const Header = () => {
   return (
     <>
       <div
-        className={`flex justify-around py-4 bg-secondry lg:px-6 px-2 lg:rounded-b-3xl rounded-none duration-500 fixed lg:flex-nowrap flex-wrap  w-full z-50 `}
+        className={`flex justify-around py-4 bg-secondry lg:px-6 px-2 lg:rounded-b-3xl rounded-none duration-500 lg:static fixed lg:flex-nowrap flex-wrap z-50  w-full  `}
       >
-        <div className="flex container justify-start lg:items-center items-start lg:w-[10%] w-[100%] ">
+        <div className="flex justify-start lg:items-center items-start lg:w-[10%] w-[100%] ">
           <img
             src={Images.pasa}
-            className="h-16 w-20 object-contain lg:mr-1 mr-0 lg:mt-0 md:mt-4 mt-[14px]"
+            className="h-16 w-20 object-contain lg:mr-[20px] mr-0"
             alt="pasa-Logo"
           />
         </div>

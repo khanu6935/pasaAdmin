@@ -116,3 +116,8 @@ table {
     color: white !important;
   }
 }
+
+.customWidthClass{
+  min-width: 1700px;
+  margin: auto;
+}

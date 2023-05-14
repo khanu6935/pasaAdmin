@@ -11,8 +11,8 @@ function HomePage() {
           <Header />
         </div>
 
-        <div className="bg-primary container lg:px-10 px-0 py-10 flex-grow flex flex-col">
-          <h3 className="text-textWhite px-5 mt-16 pb-5 sm:pb-0 lg:px-0  font-semibold text-2xl  font-[Barlow]">
+        <div className="bg-primary lg:px-10 px-0 lg:py-0 py-10 flex-grow flex flex-col">
+          <h3 className="text-textWhite px-5 lg:mt-9 mt-20 pb-5 sm:pb-0 lg:px-0  font-semibold text-2xl  font-[Barlow]">
             Statistics
           </h3>
           <div className="flex flex-wrap md:flex-nowrap  gap-4  lg:px-0 px-5  w-full">
@@ -43,7 +43,7 @@ function HomePage() {
           </div>
 
           <div
-            className="rounded-md my-5 mx-5 lg:mx-0"
+            className="rounded-md my-5 z-auto mx-5 lg:mx-0"
             style={{ border: "2px solid #311A67", flexGrow: "1" }}
           >
             <div className="px-5 py-5 flex justify-between items-center flex-wrap space-y-2 sm:space-y-0">

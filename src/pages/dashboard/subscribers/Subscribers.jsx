@@ -14,11 +14,11 @@ function Subscribers() {
       <div className="h-20">
         <Header />
       </div>
-      <div className="bg-primary container lg:px-10 px-0 py-10">
-        <h3 className="text-textWhite px-3 font-semibold text-[24px] font-[Barlow]">
+      <div className="bg-primary  lg:px-10 px-0 py-10">
+        <h3 className="text-textWhite lg:px-3 px-6 lg:pb-1 pb-6 font-semibold text-[24px] font-[Barlow] ">
           Subscribers
         </h3>
-        <div className="flex gap-4 overflow-x-scroll customClass w-full lg:px-1 px-6">
+        <div className="flex flex-wrap md:flex-nowrap  gap-4  lg:px-0 px-5 lg:pb-1 pb-6  w-full">
           <NavBoxes
             title="Total Subscribers"
             counts="1000"
