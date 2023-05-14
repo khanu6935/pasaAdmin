@@ -15,7 +15,7 @@ const NavBoxes = ({
     <div
       className={` w-full bg-transparent rounded-md lg:max-w-[224px] max-w-full flex ${
         createBlog && "justify-center items-center"
-      }  my-0 sm:my-6 justify-center pl-3 flex-col`}
+      }  my-0 sm:my-6 justify-center pl-5 flex-col`}
       style={{ border: "2px solid #311A67" }}
     >
       <div className="py-6">

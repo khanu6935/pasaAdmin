@@ -17,11 +17,35 @@ import {
 import { useState } from "react";
 import { Images } from "../../assets";
 import { CustomModal } from "../customModal/CustomModal";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { axios } from "../../lib/axios";
+import { useNavigate } from "react-router-dom";
 
 export const DeleteModal = ({ isModalOpen, handleModalClose }) => {
+  const queryClient = useQueryClient();
+
+  const deleteBlog = useMutation(
+    async (id) => {
+      const response = await axios.delete(`/blogs/${id}`);
+
+      if (!response.ok) {
+        throw new Error("Error creating blog post");
+      }
+
+      return response.json();
+    },
+    {
+      onSuccess: () => {
+        queryClient.invalidateQueries(["blogs"]);
+        // Replace 'blogs' with the name of the query that should be invalidated
+        // when the mutation is successful
+      },
+    }
+  );
+
   return (
     <div>
-      <CustomModal openModal={isModalOpen} closeModal={handleModalClose}>
+      <CustomModal openModal={!!isModalOpen} closeModal={handleModalClose}>
         <div className="w-full">
           <div>
             <h3 className="text-[32px] font-bold text-center  text-textWhite font-[Barlow]">
@@ -32,7 +56,13 @@ export const DeleteModal = ({ isModalOpen, handleModalClose }) => {
             <button className="px-16 bg-[#26164B] py-4 text-lg font-medium font-[Barlow] rounded-lg">
               Cancel
             </button>
-            <button className="px-16 bg-[#A50013] py-4 text-lg font-medium font-[Barlow] rounded-lg">
+            <button
+              className="px-16 bg-[#A50013] py-4 text-lg font-medium font-[Barlow] rounded-lg"
+              onClick={() => {
+                deleteBlog.mutate(isModalOpen);
+                handleModalClose();
+              }}
+            >
               Delete
             </button>
           </div>
@@ -42,15 +72,18 @@ export const DeleteModal = ({ isModalOpen, handleModalClose }) => {
   );
 };
 
-export function BlogActionsDropdown() {
+export function BlogActionsDropdown({ id }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const navigate = useNavigate();
+
   const handleModalOpen = () => {
-    setIsModalOpen(true);
+    setIsModalOpen(id);
   };
   const handleModalClose = () => {
     setIsModalOpen(false);
   };
+
   const months = [
     { label: "Delete", value: "1", icon: <Trash size={16} /> },
     { label: "Publish", value: "2", icon: <ArrowUpFromLineIcon size={16} /> },
@@ -72,8 +105,10 @@ export function BlogActionsDropdown() {
               className="border-b-white flex justify-between border-b last:border-0"
               onCheckedChange={() => {
                 if (m.label == "Delete") {
-                  handleModalOpen();
+                  handleModalOpen(id);
                 }
+
+                if (m.value == "4") return navigate(`/create-blog/${id}`);
 
                 setSelectedMonth(m.value);
               }}

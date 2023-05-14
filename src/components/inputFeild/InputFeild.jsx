@@ -30,23 +30,33 @@ function InputFieldWithCount({
   value,
   maxLength,
   inputClass,
+  error,
+  hasError,
+
   ...props
 }) {
   return (
-    <div className="relative my-2 flex bg-secondry overflow-hidden rounded-2xl items-center px-4 font-[Barlow]">
-      <input
-        type={type}
-        placeholder={placeholder}
-        className={`w-full p-4 rounded-2xl outline-0 text-white font-normal bg-secondry pl-12 ${inputClass}`}
-        onChange={onChange}
-        value={value}
-        maxLength={maxLength}
-        {...props}
-      />
-      <span className="text-[#FFB800] opacity-80">
-        {value?.length ?? 0}/{maxLength}
-      </span>
-    </div>
+    <>
+      <div className="relative my-2 flex bg-secondry overflow-hidden rounded-2xl items-center px-4 font-[Barlow]">
+        <input
+          type={type}
+          placeholder={placeholder}
+          className={`w-full p-4 rounded-2xl outline-0 text-white font-normal bg-secondry pl-12 ${inputClass}`}
+          onChange={onChange}
+          value={value}
+          maxLength={maxLength}
+          {...props}
+        />
+        <span className="text-[#FFB800] opacity-80">
+          {value?.length ?? 0}/{maxLength}
+        </span>
+      </div>
+      {hasError && (
+        <span className="text-white ml-2 my-2 bg-red-400 px-2 py-1 rounded-sm">
+          {error}
+        </span>
+      )}
+    </>
   );
 }
 
@@ -57,23 +67,33 @@ function TextAreaWithCount({
   value,
   maxLength,
   inputClass,
+  error,
+  hasError,
+
   ...props
 }) {
   return (
-    <div className="relative my-2 flex bg-secondry overflow-hidden rounded-2xl items-center px-4 font-[Barlow]">
-      <textarea
-        placeholder={placeholder}
-        className={`w-full p-4 rounded-2xl outline-0 text-white font-normal bg-secondry pl-12 ${inputClass}`}
-        onChange={onChange}
-        value={value}
-        maxLength={maxLength}
-        {...props}
-        style={{ resize: "none" }}
-      />
-      <span className="text-[#FFB800] opacity-80">
-        {value?.length ?? 0}/{maxLength}
-      </span>
-    </div>
+    <>
+      <div className="relative my-2 flex bg-secondry overflow-hidden rounded-2xl items-center px-4 font-[Barlow]">
+        <textarea
+          placeholder={placeholder}
+          className={`w-full p-4 rounded-2xl outline-0 text-white font-normal bg-secondry pl-12 ${inputClass}`}
+          onChange={onChange}
+          value={value}
+          maxLength={maxLength}
+          {...props}
+          style={{ resize: "none" }}
+        />
+        <span className="text-[#FFB800] opacity-80">
+          {value?.length ?? 0}/{maxLength}
+        </span>
+      </div>
+      {hasError && (
+        <span className="text-white ml-2 my-5 bg-red-400 px-2 py-1 rounded-sm">
+          {error}
+        </span>
+      )}
+    </>
   );
 }
 

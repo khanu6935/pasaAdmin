@@ -57,8 +57,7 @@ export const columns = [
     id: "actions",
     cell: ({ row }) => {
       console.log(row.original);
-
-      return <BlogActionsDropdown />;
+      return <BlogActionsDropdown id={row.original.id} />;
     },
   },
 ];
