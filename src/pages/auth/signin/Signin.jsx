@@ -112,7 +112,7 @@ function Signin() {
         <img
           src={Images.diamonds}
           alt="diamonds"
-          className="lg:[16rem] lg:w-[16rem] md:h-[15rem] md-w-[15rem] h-[10.5rem] w-[10.5rem]   absolute bottom-0 right-0  object-contain"
+          className="  lg:w-[20rem] md:h-[20rem] md-w-[15rem] h-[16.5rem] w-[10.5rem]   absolute bottom-0 right-0  object-contain"
         />
       </div>
     </>

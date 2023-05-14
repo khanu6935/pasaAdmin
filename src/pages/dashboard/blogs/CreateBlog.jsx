@@ -114,6 +114,27 @@ export default function () {
       },
     }
   );
+
+  const updateBlogMutation = useMutation(
+    async (newBlog) => {
+      const response = await axios.put("/blogs", newBlog);
+
+      if (!response.ok) {
+        throw new Error("Error creating blog post");
+      }
+
+      return response.json();
+    },
+    {
+      onSuccess: () => {
+        navigate("/blogs");
+        queryClient.invalidateQueries(["blogs"]);
+        // Replace 'blogs' with the name of the query that should be invalidated
+        // when the mutation is successful
+      },
+    }
+  );
+
   const blogSchema = Yup.object().shape({
     title: Yup.string()
       .min(2, "Too Short!")
@@ -142,7 +163,8 @@ export default function () {
       formData.append("richText", value);
       formData.append("publishedOn", new Date());
 
-      createBlogMutation.mutate(formData);
+      if (id == "news") return createBlogMutation.mutate(formData);
+      else return updateBlogMutation.mutate(formData);
     },
   });
 

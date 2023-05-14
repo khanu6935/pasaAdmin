@@ -13,14 +13,14 @@ import { columns } from "../../../components/userGrid/columns";
 function Users() {
   return (
     <div className="bg-primary min-h-screen">
-      <div>
+      <div className="h-4">
         <Header />
       </div>
       <div className="bg-primary container lg:px-10 px-0 py-10">
         <h3 className="text-textWhite mt-16  px-3 font-semibold text-[24px] font-[Barlow]">
           Users
         </h3>
-        <div className="flex gap-4 overflow-x-scroll customClass w-full lg:px-1 px-6">
+        <div className="flex gap-7 overflow-x-scroll customClass w-full lg:px-1 px-6">
           <NavBoxes
             title="Total Distributors"
             counts="500"

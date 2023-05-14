@@ -39,7 +39,7 @@ function Blogs() {
         <h3 className="text-textWhite px-3 font-semibold text-[24px] font-[Barlow]">
           Blogs
         </h3>
-        <div className="flex gap-4 overflow-x-scroll customClass w-full lg:px-1 px-6">
+        <div className="flex gap-7 overflow-x-scroll customClass w-full lg:px-0 px-6">
           <NavBoxes
             title="Total Blogs"
             counts="1000"

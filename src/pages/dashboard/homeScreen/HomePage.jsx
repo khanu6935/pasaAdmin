@@ -7,7 +7,7 @@ function HomePage() {
   return (
     <>
       <div className="bg-primary min-h-screen  flex flex-col">
-        <div>
+        <div className="h-5">
           <Header />
         </div>
 
@@ -15,7 +15,7 @@ function HomePage() {
           <h3 className="text-textWhite px-5 mt-16 pb-5 sm:pb-0 lg:px-0  font-semibold text-2xl  font-[Barlow]">
             Statistics
           </h3>
-          <div className="flex flex-wrap md:flex-nowrap  gap-4  lg:px-0 px-5  w-full">
+          <div className="flex flex-wrap md:flex-nowrap  gap-7  lg:px-0 px-5  w-full">
             <NavBoxes
               title="Contact Submissions"
               counts="50,002"

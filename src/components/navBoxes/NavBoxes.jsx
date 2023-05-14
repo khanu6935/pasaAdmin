@@ -13,9 +13,9 @@ const NavBoxes = ({
 }) => {
   return (
     <div
-      className={`h-28 w-full bg-transparent rounded-md max-w-[224px] flex ${
+      className={`h-[125px] w-full bg-transparent rounded-md max-w-[224px] flex ${
         createBlog && "justify-center items-center"
-      }  my-0 sm:my-6 justify-center pl-3 flex-col`}
+      }  my-0 sm:my-6 justify-center pl-5 flex-col`}
       style={{ border: "2px solid #311A67" }}
     >
       <p className="text-textWhite text-base font-normal font-[Barlow]">
