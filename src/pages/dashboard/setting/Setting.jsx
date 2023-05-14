@@ -43,6 +43,7 @@ function Setting() {
   const DivStyle =
     "border-b border-[#311A67] h-16 flex justify-between items-center px-4";
 
+  console.log("password", password);
   return (
     <div className="bg-primary min-h-screen">
       <div>
