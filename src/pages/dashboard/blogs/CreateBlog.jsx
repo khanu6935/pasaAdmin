@@ -7,11 +7,12 @@ import {
 
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { axios } from "../../../lib/axios";
+import { useEffect } from "react";
 
 function Button({ title, color, ...props }) {
   return (
@@ -73,6 +74,22 @@ function UploadButton({ coverImage, handleFileChange, previewURL }) {
 export default function () {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
+  const { id } = useParams();
+
+  const { data, isLoading } = useQuery(
+    ["blog", id],
+    async () => {
+      try {
+        const res = await axios.get(`blogs/${id}`);
+        return res.data;
+      } catch (error) {
+        throw error(error);
+      }
+    },
+    {
+      enabled: id != "new",
+    }
+  );
 
   const [coverImage, setCoverImage] = useState(null);
   const [previewURL, setPreviewURL] = useState(null);
@@ -128,6 +145,19 @@ export default function () {
       createBlogMutation.mutate(formData);
     },
   });
+
+  useEffect(() => {
+    if (data) {
+      console.log(data);
+
+      if (data.blog) {
+        formik.setFieldValue("title", data.blog.title);
+        formik.setFieldValue("description", data.blog.description);
+        setValue(data.blog.richText);
+        setPreviewURL(data.blog.image);
+      }
+    }
+  }, [data]);
 
   const editorRef = useRef(null);
 

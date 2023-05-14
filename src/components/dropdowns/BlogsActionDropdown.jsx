@@ -108,7 +108,7 @@ export function BlogActionsDropdown({ id }) {
                   handleModalOpen(id);
                 }
 
-                if (m.value == "4") return navigate(`/blog-details/${id}`);
+                if (m.value == "4") return navigate(`/create-blog/${id}`);
 
                 setSelectedMonth(m.value);
               }}

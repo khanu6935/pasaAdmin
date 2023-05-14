@@ -27,7 +27,7 @@ const NavBoxes = ({
         </h2>
         {createBlog ? (
           <Link
-            to="/create-blog"
+            to="/create-blog/new"
             className="flex flex-col justify-center items-center gap-2 mr-8"
           >
             <span className="cursor-pointer">

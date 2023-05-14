@@ -36,7 +36,7 @@ function App() {
             <Route path="/subscribers" element={<Subscribers />} />
             <Route path="/setting" element={<Setting />} />
             <Route path="/notification" element={<Notification />} />
-            <Route path="/create-blog" element={<CreateBlog />} />
+            <Route path="/create-blog/:id" element={<CreateBlog />} />
             <Route path="/blog-details/:id" element={<BlogDetail />} />
           </Routes>
         </BrowserRouter>
