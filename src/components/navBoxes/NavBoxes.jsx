@@ -13,7 +13,7 @@ const NavBoxes = ({
 }) => {
   return (
     <div
-      className={` w-full bg-transparent rounded-md lg:max-w-[224px] max-w-full flex ${
+      className={` w-full bg-transparent rounded-md lg:max-w-[244px] max-w-full flex ${
         createBlog && "justify-center items-center"
       }  my-0 sm:my-6 justify-center pl-5 flex-col`}
       style={{ border: "2px solid #311A67" }}
@@ -28,7 +28,7 @@ const NavBoxes = ({
           </h2>
           {createBlog ? (
             <Link
-              to="/create-blog"
+              to="/create-blog/new"
               className="flex flex-col justify-center items-center gap-2 mr-8"
             >
               <span className="cursor-pointer">
