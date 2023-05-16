@@ -14,10 +14,11 @@ import {
   TableRow,
 } from "../table/table";
 import { Pagination } from "../table/Pagination";
+import { useMemo } from "react";
 
 export function UserTable({ columns, data }) {
   const table = useReactTable({
-    data: data,
+    data,
     columns,
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
@@ -54,6 +55,7 @@ export function UserTable({ columns, data }) {
                 <TableRow
                   key={row.id}
                   data-state={row.getIsSelected() && "selected"}
+                  className="h-20"
                 >
                   {row.getVisibleCells().map((cell) => (
                     <TableCell key={cell.id}>

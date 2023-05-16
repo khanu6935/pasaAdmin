@@ -7,8 +7,24 @@ import {
 } from "../../../components";
 import { SubscribersTable } from "../../../components/subscribersGrid/table-data";
 import { columns } from "../../../components/subscribersGrid/columns";
+import { useQuery } from "@tanstack/react-query";
+import { axios } from "../../../lib/axios";
 
 function Subscribers() {
+  const { data: subscribers, isLoading } = useQuery(
+    ["subscribers"],
+    async () => {
+      try {
+        const res = await axios.get("/newsletter");
+        return res.data;
+      } catch (error) {
+        throw new Error(error);
+      }
+    }
+  );
+
+  console.log(subscribers);
+
   return (
     <div className="bg-primary min-h-screen">
       <div className="h-20">
@@ -21,7 +37,7 @@ function Subscribers() {
         <div className="flex flex-wrap md:flex-nowrap  gap-4  lg:px-0 px-5 lg:pb-1 pb-6  w-full">
           <NavBoxes
             title="Total Subscribers"
-            counts="1000"
+            counts={subscribers.length}
             ratio="24"
             duration="Overall"
           />
@@ -39,7 +55,7 @@ function Subscribers() {
         </div>
         <div className="border-t-0 border-x-2 border-b-2 border-[#311A67]">
           <div className="rounded-md overflow-x-auto">
-            <SubscribersTable columns={columns} data={SubscriberRowData} />
+            <SubscribersTable columns={columns} data={subscribers ?? []} />
           </div>
         </div>
       </div>

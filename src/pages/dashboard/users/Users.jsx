@@ -9,8 +9,19 @@ import {
 } from "../../../components";
 import { UserTable } from "../../../components/userGrid/data-table";
 import { columns } from "../../../components/userGrid/columns";
+import { useQuery } from "@tanstack/react-query";
+import { axios } from "../../../lib/axios";
 
 function Users() {
+  const { data: users, isLoading } = useQuery(["users"], async () => {
+    try {
+      const res = await axios.get("/users");
+      return res.data;
+    } catch (error) {
+      throw new Error(error);
+    }
+  });
+
   return (
     <div className="bg-primary min-h-screen">
       <div>
@@ -23,13 +34,13 @@ function Users() {
         <div className="flex flex-wrap md:flex-nowrap  gap-4  lg:px-0 px-5 lg:pb-1 pb-6  w-full">
           <NavBoxes
             title="Total Distributors"
-            counts="500"
+            counts={users?.length}
             ratio="24"
             duration="Overall"
           />
           <NavBoxes
             title="Total Players"
-            counts="500"
+            counts={users?.length}
             ratio="24"
             duration="Overall"
           />
@@ -46,8 +57,8 @@ function Users() {
           />
         </div>
         <div className="border-t-0 border-x-2 border-b-2   border-[#311A67]">
-          <div className="rounded-md overflow-x-auto">
-            <UserTable columns={columns} data={UserRowData} />
+          <div className="rounded-md h-full">
+            <UserTable columns={columns} data={users ?? []} />
           </div>
         </div>
       </div>

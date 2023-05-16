@@ -21,7 +21,15 @@ import CreateBlog from "./pages/dashboard/blogs/CreateBlog";
 import BlogDetail from "./pages/dashboard/blogs/BlogDetail";
 
 function App() {
-  const queryClient = new QueryClient();
+  const queryClient = new QueryClient({
+    defaultOptions: {
+      queries: {
+        refetchOnMount: false,
+        refetchOnWindowFocus: false,
+        staleTime: 5000,
+      },
+    },
+  });
 
   return (
     <>
