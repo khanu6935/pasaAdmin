@@ -26,7 +26,7 @@ export const DeleteModal = ({ isModalOpen, handleModalClose }) => {
 
   const deleteBlog = useMutation(
     async (id) => {
-      const response = await axios.delete(`/blogs/${id}`);
+      const response = await axios.delete(`/blog/${id}`);
 
       if (!response.ok) {
         throw new Error("Error creating blog post");

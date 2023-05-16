@@ -41,7 +41,7 @@ function Setting() {
   const TextStyle =
     "text-textWhite font-medium text-base cursor-pointer hover:underline font-[Barlow] ";
   const DivStyle =
-    "border-b border-[#311A67] h-16 flex justify-between items-center px-4";
+    "border-b border-[#311A67] h-[78px] flex justify-between items-center px-4";
 
   console.log("password", password);
   return (

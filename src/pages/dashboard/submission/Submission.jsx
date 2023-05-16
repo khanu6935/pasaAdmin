@@ -7,8 +7,22 @@ import {
 } from "../../../components";
 import { SubmissionTable } from "../../../components/SubmissionGrid/table-data";
 import { columns } from "../../../components/SubmissionGrid/columns";
+import { useQuery } from "@tanstack/react-query";
+import { axios } from "../../../lib/axios";
 
 function Submission() {
+  const { data: submissions, isLoading } = useQuery(
+    ["submissions"],
+    async () => {
+      try {
+        const res = await axios.get("/contact");
+        return res.data;
+      } catch (error) {
+        throw new Error(error);
+      }
+    }
+  );
+
   return (
     <div className="bg-primary min-h-screen">
       <div className="h-20">
@@ -19,7 +33,11 @@ function Submission() {
           Submission
         </h3>
         <div className="flex flex-wrap md:flex-nowrap  gap-4  lg:px-0 px-5 lg:pb-1 pb-6  w-full">
-          <NavBoxes title="Contacts" counts="1000" showIcon={false} />
+          <NavBoxes
+            title="Contacts"
+            counts={submissions?.length}
+            showIcon={false}
+          />
         </div>
         <div
           className="rounded-md z-0 flex flex-col"
@@ -34,7 +52,7 @@ function Submission() {
         </div>
         <div className="border-t-0 border-x-2 border-b-2 border-[#311A67]">
           <div className="rounded-md overflow-x-auto">
-            <SubmissionTable columns={columns} data={SubmissionRowData} />
+            <SubmissionTable columns={columns} data={submissions ?? []} />
           </div>
         </div>
       </div>

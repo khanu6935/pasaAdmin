@@ -116,8 +116,8 @@ export default function () {
   );
 
   const updateBlogMutation = useMutation(
-    async (newBlog) => {
-      const response = await axios.put("/blogs", newBlog);
+    async ({ id, updateBlog }) => {
+      const response = await axios.put(`/blogs/${id}`, updateBlog);
 
       if (!response.ok) {
         throw new Error("Error creating blog post");
@@ -163,8 +163,8 @@ export default function () {
       formData.append("richText", value);
       formData.append("publishedOn", new Date());
 
-      if (id == "news") return createBlogMutation.mutate(formData);
-      else return updateBlogMutation.mutate(formData);
+      if (id == "new") return createBlogMutation.mutate(formData);
+      else return updateBlogMutation.mutate({ id, formData });
     },
   });
 

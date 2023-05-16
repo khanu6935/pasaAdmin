@@ -3,6 +3,7 @@ import { BlogActionsDropdown } from "../dropdowns/BlogsActionDropdown";
 import { Link, useNavigate } from "react-router-dom";
 import { CustomModal } from "../customModal/CustomModal";
 import { useState } from "react";
+import { formatDate } from "../../utils/formateDate";
 
 export const ViewMessageModal = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -49,11 +50,11 @@ export const columns = [
     header: "ID",
   },
   {
-    accessorKey: "fname",
+    accessorKey: "firstName",
     header: "First Name",
   },
   {
-    accessorKey: "lname",
+    accessorKey: "lastName",
     header: "Last Name",
   },
   {
@@ -67,9 +68,12 @@ export const columns = [
   {
     accessorKey: "date",
     header: "Date",
+    cell: ({ row }) => {
+      return <div>{formatDate(new Date(row.original.createdAt))}</div>;
+    },
   },
   {
-    accessorKey: "subject",
+    accessorKey: "message",
     header: "Subject",
   },
 
@@ -83,8 +87,6 @@ export const columns = [
   {
     id: "actions",
     cell: ({ row }) => {
-      console.log(row.original);
-
       return <BlogActionsDropdown />;
     },
   },

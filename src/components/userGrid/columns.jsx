@@ -1,16 +1,12 @@
-import { Eye } from "lucide-react";
+import { formatDate } from "../../utils/formateDate";
 import { BlogActionsDropdown } from "../dropdowns/BlogsActionDropdown";
-import { Link, useNavigate } from "react-router-dom";
 
 export const columns = [
   {
-    accessorKey: "fname",
-    header: "First Name",
+    accessorKey: "name",
+    header: "Name",
   },
-  {
-    accessorKey: "lname",
-    header: "Last Name",
-  },
+
   {
     accessorKey: "email",
     header: "Email",
@@ -20,8 +16,11 @@ export const columns = [
     header: "Phone",
   },
   {
-    accessorKey: "joinon",
+    accessorKey: "createdAt",
     header: "Join On",
+    cell: ({ row }) => {
+      return <div>{formatDate(new Date(row.original.createdAt))}</div>;
+    },
   },
   //   {
   //     header: "Actions",
