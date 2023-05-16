@@ -2,8 +2,23 @@ import React from "react";
 import { Header, NavBoxes, ApexChart } from "../../../components";
 import { DropdownMonths } from "../../../components/dropdowns/MonthlyFilterDropdown";
 import { DropdownUsers } from "../../../components/dropdowns/UsersDropdown";
+import { useNavigate } from "react-router-dom";
 
 function HomePage() {
+  const navigate = useNavigate();
+
+  const handleNavBoxes = (title) => {
+    if (title === "Contact Submissions") {
+      navigate("/submission");
+    } else if (title === "Subscribers") {
+      navigate("/subscribers");
+    } else if (title === "Player Signup") {
+      navigate("/users");
+    } else if (title === "Distributor Signup") {
+      navigate("/users");
+    }
+  };
+
   return (
     <>
       <div className="bg-primary min-h-screen">
@@ -21,24 +36,28 @@ function HomePage() {
               counts="50,002"
               ratio="24"
               duration="Overall"
+              onClick={() => handleNavBoxes("Contact Submissions")}
             />
             <NavBoxes
               title="Subscribers"
               counts="5000"
               ratio="24"
               duration="This Month"
+              onClick={() => handleNavBoxes("Subscribers")}
             />
             <NavBoxes
               title="Player Signup"
               counts="5000"
               ratio="24"
               duration="This Month"
+              onClick={() => handleNavBoxes("Player Signup")}
             />
             <NavBoxes
               title="Distributor Signup"
               counts="5000"
               ratio="24"
               duration="This Month"
+              onClick={() => handleNavBoxes("Distributor Signup")}
             />
           </div>
 

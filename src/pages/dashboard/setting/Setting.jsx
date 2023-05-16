@@ -86,12 +86,12 @@ function Setting() {
         </div>
       </div>
       {/* change password modal */}
-      <div className="customClass">
+      <div className="flex customClass justify-center">
         <CustomModal openModal={isModalOpen} closeModal={handleModalClose}>
-          <div className="w-full customClass">
+          <div className="w-full flex justify-center py-10 customClass flex-col items-center">
             <HeaderModal title=" CHANGE PASSWORD NOW!" />
 
-            <div className="lg:px-10 md:px-3 px-1">
+            <div className="lg:px-10 md:px-3 lg:w-[70%] w-full customClass lg:py-12 py-1  px-1">
               <form>
                 <InputPassword
                   password={password}
@@ -108,16 +108,16 @@ function Setting() {
                   placeholder="New Password"
                 />
 
-                <div className="flex justify-end">
+                <div className="flex  lg:px-7 md:px-6 px-1 justify-end">
                   <p className="text-[#FFB800] font-[Barlow]">
                     Forget Password
                   </p>
                 </div>
-                <div className="mt-6">
+                <div className="mt-6 lg:px-2 md:px-3 px-1">
                   <button
                     type="submit"
                     className="bg-[#016BE6] text-textWhite
-                   w-full py-4 rounded-md  font-medium font-[Barlow]"
+                   w-full py-6 rounded-[18px]  font-medium font-[Barlow]"
                   >
                     Change Password
                   </button>
@@ -178,7 +178,6 @@ function Setting() {
                   >
                     Change Phone No
                   </button>
-                  {/* <p className="text-[red]">{error}</p> */}
                 </div>
               </form>
             </div>

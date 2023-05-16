@@ -85,6 +85,7 @@ function Signin() {
                   handlePasswordChange={handlePasswordChange}
                   handleShow={handleShow}
                   placeholder="Enter Password"
+                  signin={true}
                 />
 
                 <div className="flex justify-end">

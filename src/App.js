@@ -35,7 +35,7 @@ function App() {
             <Route path="/submission" element={<Submission />} />
             <Route path="/subscribers" element={<Subscribers />} />
             <Route path="/setting" element={<Setting />} />
-            <Route path="/notification" element={<Notification />} />
+            {/* <Route path="/notification" element={<Notification />} /> */}
             <Route path="/create-blog/:id" element={<CreateBlog />} />
             <Route path="/blog-details/:id" element={<BlogDetail />} />
           </Routes>

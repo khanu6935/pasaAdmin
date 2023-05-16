@@ -10,13 +10,15 @@ const NavBoxes = ({
   duration,
   createBlog,
   createTitle,
+  onClick,
 }) => {
   return (
     <div
-      className={` w-full bg-transparent rounded-md lg:max-w-[224px] max-w-full flex ${
+      className={` w-full bg-transparent rounded-md cursor-pointer lg:max-w-[224px] max-w-full flex ${
         createBlog && "justify-center items-center"
       }  my-0 sm:my-6 justify-center pl-5 flex-col`}
       style={{ border: "2px solid #311A67" }}
+      onClick={onClick}
     >
       <div className="py-6">
         <p className="text-textWhite text-base font-normal font-[Barlow]">

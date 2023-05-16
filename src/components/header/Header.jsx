@@ -116,23 +116,24 @@ const Header = () => {
                 })}
               </ul>
               <div className="lg:px-0 px-4 lg:hidden block  lg:justify-end justify-start lg:w-[16rem] w-full">
-                <Link to="/notification">
-                  <p className="h-12 w-12 rounded-full bg-[#183584] flex justify-center items-center">
-                    <img
-                      src={Images.notification}
-                      alt="logo"
-                      className="h-6 w-6 object-contain"
-                    />
-                  </p>
-                </Link>
+                {/* <Link to="/notification"> */}
+                <p className="h-12 w-12 rounded-full bg-[#183584] flex justify-center items-center">
+                  <img
+                    src={Images.notification}
+                    alt="logo"
+                    className="h-6 w-6 object-contain"
+                  />
+                </p>
+                {/* </Link> */}
               </div>
             </div>
           </div>
           <div className="lg:px-0 px-4 lg:block hidden  w-[10%]  lg:justify-end justify-start">
-            <Link
+            {/* <Link
               to="/notification"
               className="h-full flex justify-end items-center"
-            >
+            > */}
+            <div className="h-full flex justify-end items-center">
               <p className="h-12 w-12 rounded-full bg-[#183584] flex justify-center items-center">
                 <img
                   src={Images.notification}
@@ -140,7 +141,8 @@ const Header = () => {
                   className="h-6 w-6 object-contain"
                 />
               </p>
-            </Link>
+            </div>
+            {/* </Link> */}
           </div>
         </div>
       </div>

@@ -6,7 +6,7 @@ function CustomModal({ openModal, closeModal, children }) {
   return (
     <div className="customClass">
       <ReactModal
-        className="customClass z-50"
+        className="z-50 customClass"
         style={{
           overlay: {
             display: "flex",
@@ -19,10 +19,9 @@ function CustomModal({ openModal, closeModal, children }) {
             left: "auto",
             right: "auto",
             bottom: "auto",
-            minWidth: "600px",
-            maxWidth: "864px",
+            minWidth: "900px",
+            maxWidth: "1000px",
             maxHeight: "80%",
-            margin: "auto",
             padding: "20px",
           },
         }}
