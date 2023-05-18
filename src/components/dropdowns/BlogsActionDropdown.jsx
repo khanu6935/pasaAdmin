@@ -29,7 +29,6 @@ export const DeleteModal = ({ isModalOpen, handleModalClose }) => {
       try {
         const response = await axios.patch(`/blogs/delete/${id}`);
         return response;
-        return response.json();
       } catch (error) {
         throw new Error(error);
       }
