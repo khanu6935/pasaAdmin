@@ -26,19 +26,23 @@ export const DeleteModal = ({ isModalOpen, handleModalClose }) => {
 
   const deleteBlog = useMutation(
     async (id) => {
-      const response = await axios.delete(`/blog/${id}`);
-
-      if (!response.ok) {
-        throw new Error("Error creating blog post");
+      try {
+        const response = await axios.patch(`/blogs/delete/${id}`);
+        return response;
+        return response.json();
+      } catch (error) {
+        throw new Error(error);
       }
-
-      return response.json();
     },
     {
       onSuccess: () => {
+        console.log("this is blogs sucess ", "blogs");
         queryClient.invalidateQueries(["blogs"]);
         // Replace 'blogs' with the name of the query that should be invalidated
         // when the mutation is successful
+      },
+      onError: (err) => {
+        console.log("errrr", err);
       },
     }
   );
