@@ -99,10 +99,6 @@ export default function () {
     async (newBlog) => {
       const response = await axios.post("/blogs", newBlog);
 
-      if (!response.ok) {
-        throw new Error("Error creating blog post");
-      }
-
       return response.json();
     },
     {
@@ -118,10 +114,6 @@ export default function () {
   const updateBlogMutation = useMutation(
     async ({ id, updateBlog }) => {
       const response = await axios.put(`/blogs/${id}`, updateBlog);
-
-      if (!response.ok) {
-        throw new Error("Error creating blog post");
-      }
 
       return response.json();
     },
