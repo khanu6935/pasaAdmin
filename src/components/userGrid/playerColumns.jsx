@@ -1,12 +1,16 @@
 import { formatDate } from "../../utils/formateDate";
 import { BlogActionsDropdown } from "../dropdowns/BlogsActionDropdown";
 
-export const columns = [
+export const Playercolumns = [
   {
-    accessorKey: "name",
-    header: "Name",
+    accessorKey: "firstName",
+    header: "First Name",
   },
 
+  {
+    accessorKey: "lastName",
+    header: "Last Name",
+  },
   {
     accessorKey: "email",
     header: "Email",
@@ -16,8 +20,16 @@ export const columns = [
     header: "Phone",
   },
   {
+    accessorKey: "message",
+    header: "Message",
+  },
+  {
     accessorKey: "unlockMyBonusCheck",
-    header: "Unlock My Bonus Check",
+    header: "Phone",
+  },
+  {
+    accessorKey: "unlockMyBonusCheck",
+    header: "Check Updates Received ",
     cell: ({ row }) => {
       return (
         <div>{row.original.unlockMyBonusCheck === false ? "No" : "Yes"}</div>
