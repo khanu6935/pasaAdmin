@@ -1,26 +1,51 @@
 import React, { useState } from "react";
-import {
-  Header,
-  NavBoxes,
-  PageHeader,
-  UserRowData,
-  DataTable,
-  Pagination,
-} from "../../../components";
+import { Header, NavBoxes, PageHeader } from "../../../components";
 import { UserTable } from "../../../components/userGrid/data-table";
 import { columns } from "../../../components/userGrid/columns";
 import { useQuery } from "@tanstack/react-query";
 import { axios } from "../../../lib/axios";
+import { Playercolumns } from "../../../components/userGrid/playerColumns";
 
 function Users() {
-  const { data: users, isLoading } = useQuery(["users"], async () => {
+  const [activeApi, setActiveApi] = useState("contact");
+  const { data: contact, isLoading } = useQuery(["contact"], async () => {
     try {
-      const res = await axios.get("/users");
-      return res.data;
+      const res = await axios.get("/contact");
+      const apidata = res.data;
+      const formattedData = apidata.map((item) => ({
+        ...item,
+        unlockMyBonusCheck: Boolean(item.unlockMyBonusCheck),
+      }));
+
+      return formattedData;
     } catch (error) {
       throw new Error(error);
     }
   });
+
+  const { data: users } = useQuery(["users"], async () => {
+    try {
+      const res = await axios.get("/users");
+      const apidata = res.data;
+      const formattedData = apidata.map((item) => ({
+        ...item,
+        unlockMyBonusCheck: Boolean(item.unlockMyBonusCheck),
+      }));
+
+      return formattedData;
+    } catch (error) {
+      throw new Error(error);
+    }
+  });
+
+  const handleUserTable = (api) => {
+    setActiveApi(api);
+  };
+
+  console.log("users>>", users);
+  console.log("contact>>", contact);
+
+  console.log("activeApi", activeApi);
 
   return (
     <div className="bg-primary min-h-screen">
@@ -37,12 +62,14 @@ function Users() {
             counts={users?.length}
             ratio="24"
             duration="Overall"
+            onClick={() => handleUserTable("contact")}
           />
           <NavBoxes
             title="Total Players"
             counts={users?.length}
             ratio="24"
             duration="Overall"
+            onClick={() => handleUserTable("users")}
           />
         </div>
         <div
@@ -58,7 +85,11 @@ function Users() {
         </div>
         <div className="border-t-0 border-x-2 border-b-2   border-[#311A67]">
           <div className="rounded-md h-full">
-            <UserTable columns={columns} data={users ?? []} />
+            {activeApi === "users" ? (
+              <UserTable columns={columns} data={users ?? []} />
+            ) : (
+              <UserTable columns={Playercolumns} data={contact ?? []} />
+            )}
           </div>
         </div>
       </div>

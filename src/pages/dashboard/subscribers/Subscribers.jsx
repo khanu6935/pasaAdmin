@@ -37,7 +37,7 @@ function Subscribers() {
         <div className="flex flex-wrap md:flex-nowrap  gap-4  lg:px-0 px-5 lg:pb-1 pb-6  w-full">
           <NavBoxes
             title="Total Subscribers"
-            counts={subscribers.length}
+            counts={subscribers?.length}
             ratio="24"
             duration="Overall"
           />
