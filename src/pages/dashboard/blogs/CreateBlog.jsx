@@ -99,12 +99,13 @@ export default function () {
     async (newBlog) => {
       const response = await axios.post("/blogs", newBlog);
 
-      return response.json();
+      return response;
     },
     {
       onSuccess: () => {
         navigate("/blogs");
         queryClient.invalidateQueries(["blogs"]);
+        navigate("/blogs");
         // Replace 'blogs' with the name of the query that should be invalidated
         // when the mutation is successful
       },
@@ -113,12 +114,13 @@ export default function () {
 
   const updateBlogMutation = useMutation(
     async ({ id, updateBlog }) => {
-      const response = await axios.put(`/blogs/${id}`, updateBlog);
+      const response = await axios.patch(`/blogs/${id}`, updateBlog);
 
-      return response.json();
+      return response;
     },
     {
       onSuccess: () => {
+        navigate("/blogs");
         navigate("/blogs");
         queryClient.invalidateQueries(["blogs"]);
         // Replace 'blogs' with the name of the query that should be invalidated
@@ -147,13 +149,14 @@ export default function () {
     onSubmit: (values) => {
       const formData = new FormData();
 
-      if (!coverImage) alert("Cover Image is Required");
+      if (!coverImage && id == "new") return alert("Cover Image is Required");
 
       formData.append("title", values.title);
       formData.append("description", values.description);
       formData.append("image", coverImage);
       formData.append("richText", value);
       formData.append("publishedOn", new Date());
+      formData.append("author", "admin");
 
       if (id == "new") return createBlogMutation.mutate(formData);
       else return updateBlogMutation.mutate({ id, formData });

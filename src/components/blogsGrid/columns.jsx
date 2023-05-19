@@ -1,6 +1,7 @@
 import { Eye } from "lucide-react";
 import { BlogActionsDropdown } from "../dropdowns/BlogsActionDropdown";
 import { Link, useNavigate } from "react-router-dom";
+import { formatDate } from "../../utils/formateDate";
 
 export const columns = [
   {
@@ -35,6 +36,9 @@ export const columns = [
   {
     accessorKey: "publishedOn",
     header: "Published On",
+    cell: ({ row }) => {
+      return <div>{formatDate(new Date(row.original.publishedOn))}</div>;
+    },
   },
   {
     // header: "Actions",
