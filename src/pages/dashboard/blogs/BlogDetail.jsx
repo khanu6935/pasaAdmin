@@ -65,9 +65,6 @@ const BlogDetail = () => {
               Viewing Blogs
             </div>
             <div className="space-x-0 space-y-2 sm:space-y-0 sm:space-x-2">
-              <button className="bg-[#50A1FF] px-4 py-1 rounded-md font-medium font-[Barlow]">
-                Publish
-              </button>
               <button
                 className="bg-[#EB001B] px-4 py-1 rounded-md font-medium font-[Barlow]"
                 onClick={() => {
