@@ -13,6 +13,7 @@ import * as Yup from "yup";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { axios } from "../../../lib/axios";
 import { useEffect } from "react";
+import { toast } from "react-toastify";
 
 function Button({ title, color, ...props }) {
   return (
@@ -103,9 +104,13 @@ export default function () {
     },
     {
       onSuccess: () => {
-        navigate("/blogs");
+        console.log("succes of blogs");
         queryClient.invalidateQueries(["blogs"]);
         navigate("/blogs");
+        toast("Blog Created ...!!!", {
+          type: "success",
+          style: { backgroundColor: "#1A0E37", color: "white" },
+        });
         // Replace 'blogs' with the name of the query that should be invalidated
         // when the mutation is successful
       },
@@ -113,16 +118,19 @@ export default function () {
   );
 
   const updateBlogMutation = useMutation(
-    async ({ id, updateBlog }) => {
-      const response = await axios.patch(`/blogs/${id}`, updateBlog);
+    async ({ id, formData }) => {
+      const response = await axios.patch(`/blogs/${id}`, formData);
 
       return response;
     },
     {
       onSuccess: () => {
         navigate("/blogs");
-        navigate("/blogs");
         queryClient.invalidateQueries(["blogs"]);
+        toast("Blog Updated ...!!!", {
+          type: "success",
+          style: { backgroundColor: "#1A0E37", color: "white" },
+        });
         // Replace 'blogs' with the name of the query that should be invalidated
         // when the mutation is successful
       },
@@ -157,6 +165,8 @@ export default function () {
       formData.append("richText", value);
       formData.append("publishedOn", new Date());
       formData.append("author", "admin");
+
+      console.log("formData", formData);
 
       if (id == "new") return createBlogMutation.mutate(formData);
       else return updateBlogMutation.mutate({ id, formData });
@@ -195,8 +205,6 @@ export default function () {
       setCoverImage(selectedFile);
     }
   };
-
-  console.log({ coverImage });
 
   const modules = useMemo(() => {
     return {
@@ -240,7 +248,7 @@ export default function () {
               onBlur={formik.handleBlur}
               hasError={formik.errors.title && formik.touched.title}
               error={formik.errors.title}
-              placeholder={"Enter Blog Title"}
+              placeholder={"Enter Title"}
               inputClass="py-5 place placeholder-white opacity-80 !placeholder-opacity-80 font-[Barlow] !px-2 !py-7"
             />
           </div>
@@ -256,7 +264,7 @@ export default function () {
               hasError={formik.errors.description && formik.touched.description}
               onBlur={formik.handleBlur}
               error={formik.errors.description}
-              placeholder={"Enter Blog Title"}
+              placeholder={"Enter Description"}
               inputClass="py-5 place placeholder-white opacity-80 !placeholder-opacity-80  !font-[Barlow] !px-2 !py-7"
             />
           </div>
@@ -295,7 +303,6 @@ export default function () {
           </div>
 
           <div className="sm:space-x-8 space-y-5 sm:space-y-0 space-x-0 my-10">
-            <Button title="Save as Draft" color="secondry" />
             <Button
               title="Publish"
               color="navyBlue"

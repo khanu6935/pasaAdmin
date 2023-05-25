@@ -20,6 +20,7 @@ import { CustomModal } from "../customModal/CustomModal";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { axios } from "../../lib/axios";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export const DeleteModal = ({ isModalOpen, handleModalClose }) => {
   const queryClient = useQueryClient();
@@ -37,6 +38,10 @@ export const DeleteModal = ({ isModalOpen, handleModalClose }) => {
       onSuccess: () => {
         console.log("this is blogs sucess ", "blogs");
         queryClient.invalidateQueries(["blogs"]);
+        toast("Blog Deleted ...!!!", {
+          type: "error",
+          style: { backgroundColor: "#1A0E37", color: "white" },
+        });
         // Replace 'blogs' with the name of the query that should be invalidated
         // when the mutation is successful
       },
@@ -97,9 +102,9 @@ export function BlogActionsDropdown({ id }) {
   const [selectedMonth, setSelectedMonth] = useState("1");
 
   return (
-    <DropdownMenu>
+    <DropdownMenu className="cursor-pointer">
       <DropdownMenuTrigger asChild>
-        <img src={Images.dropdown} className="w-6" />
+        <img src={Images.dropdown} className="w-6 cursor-pointer" />
       </DropdownMenuTrigger>
       <DropdownMenuContent className="bg-[#016BE6] text-white">
         {months.map((m) => {
@@ -110,6 +115,8 @@ export function BlogActionsDropdown({ id }) {
                 if (m.label == "Delete") {
                   handleModalOpen(id);
                 }
+
+                if (m.value == "3") return navigate(`/blog-details/${id}`);
 
                 if (m.value == "4") return navigate(`/create-blog/${id}`);
 

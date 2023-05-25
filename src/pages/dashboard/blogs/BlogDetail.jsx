@@ -1,12 +1,15 @@
-import { useQuery } from "@tanstack/react-query";
+import { useMutation, useQueryClient, useQuery } from "@tanstack/react-query";
 import { Images } from "../../../assets";
 import { Header } from "../../../components";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { axios } from "../../../lib/axios";
 import Loading from "../../../components/ui/Loading";
+import { toast } from "react-toastify";
 
 const BlogDetail = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
+  const queryClient = useQueryClient();
 
   const { data, isLoading } = useQuery(["blog", id], async () => {
     try {
@@ -16,6 +19,33 @@ const BlogDetail = () => {
       throw error(error);
     }
   });
+
+  const deleteBlog = useMutation(
+    async (id) => {
+      try {
+        const response = await axios.patch(`/blogs/delete/${id}`);
+        return response;
+      } catch (error) {
+        throw new Error(error);
+      }
+    },
+    {
+      onSuccess: () => {
+        console.log("this is blogs sucess ", "blogs");
+        navigate("/blogs");
+        queryClient.invalidateQueries(["blogs"]);
+        toast("Blog Deleted ...!!!", {
+          type: "error",
+          style: { backgroundColor: "#1A0E37", color: "white" },
+        });
+        // Replace 'blogs' with the name of the query that should be invalidated
+        // when the mutation is successful
+      },
+      onError: (err) => {
+        console.log("errrr", err);
+      },
+    }
+  );
 
   if (isLoading) return <Loading />;
 
@@ -38,10 +68,19 @@ const BlogDetail = () => {
               <button className="bg-[#50A1FF] px-4 py-1 rounded-md font-medium font-[Barlow]">
                 Publish
               </button>
-              <button className="bg-[#EB001B] px-4 py-1 rounded-md font-medium font-[Barlow]">
+              <button
+                className="bg-[#EB001B] px-4 py-1 rounded-md font-medium font-[Barlow]"
+                onClick={() => {
+                  deleteBlog.mutate(id);
+                }}
+              >
                 Delete Blog
               </button>
-              <button className="bg-[#016BE6] px-4 py-1 rounded-md font-medium font-[Barlow]">
+
+              <button
+                className="bg-[#016BE6] px-4 py-1 rounded-md font-medium font-[Barlow]"
+                onClick={() => navigate(`/create-blog/${id}`)}
+              >
                 Edit Blog
               </button>
             </div>
@@ -52,7 +91,7 @@ const BlogDetail = () => {
           <div className="mt-5 sm:mt-0">
             <img
               src={data.blog.image}
-              className="object-fit lg:w-full w-[95%] mx-auto"
+              className="object-fit lg:w-full w-[95%] max-w-[1337px] max-h-[486px] h-full object-contain mx-auto"
             />
           </div>
           {/* Cover Image End */}

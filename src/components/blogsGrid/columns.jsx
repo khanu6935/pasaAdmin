@@ -20,9 +20,9 @@ export const columns = [
 
           <div>
             <span
-              class={`  text-xs font-medium mr-2 px-2.5 py-0.5 rounded bg-yellow-500 `}
+              class={`  text-xs font-medium mr-2 px-2.5 py-0.5 rounded bg-yellow-500 text-black`}
             >
-              Draft
+              Published
             </span>
           </div>
         </div>

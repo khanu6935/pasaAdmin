@@ -19,7 +19,8 @@ import {
 } from "@tanstack/react-query";
 import CreateBlog from "./pages/dashboard/blogs/CreateBlog";
 import BlogDetail from "./pages/dashboard/blogs/BlogDetail";
-
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 function App() {
   const queryClient = new QueryClient({
     defaultOptions: {
@@ -48,6 +49,7 @@ function App() {
             <Route path="/blog-details/:id" element={<BlogDetail />} />
           </Routes>
         </BrowserRouter>
+        <ToastContainer position="top-right" autoClose={2000} />
       </QueryClientProvider>
     </>
   );
