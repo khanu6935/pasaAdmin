@@ -104,12 +104,6 @@ export default function () {
     },
     {
       onSuccess: () => {
-<<<<<<< HEAD
-        navigate("/blogs");
-        console.log("created");
-        queryClient.invalidateQueries(["blogs"]);
-
-=======
         console.log("succes of blogs");
         queryClient.invalidateQueries(["blogs"]);
         navigate("/blogs");
@@ -117,7 +111,6 @@ export default function () {
           type: "success",
           style: { backgroundColor: "#1A0E37", color: "white" },
         });
->>>>>>> 85cabd74e7fbb02281e4466a62aa274780c8913e
         // Replace 'blogs' with the name of the query that should be invalidated
         // when the mutation is successful
       },
