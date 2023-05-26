@@ -26,7 +26,9 @@ export function DropdownMonths({ setSelectDays, selectDays }) {
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <div className="text-white items-center justify-between bg-navyBlue rounded-3xl px-4 py-2 flex">
-          <div className="px-2 font-semibold w-full">{selectDays}</div>
+          <div className="px-2 font-semibold w-full">
+            {months.find((i) => i.value == selectDays)?.label}
+          </div>
           <ChevronDown size={20} />
         </div>
       </DropdownMenuTrigger>

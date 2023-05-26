@@ -16,16 +16,17 @@ import { useEffect } from "react";
 import { toast } from "react-toastify";
 import { Loader2 } from "lucide-react";
 
-function Button({ title, color, ...props }) {
+function Button({ isLoading, title, color, ...props }) {
   return (
     <button
+      disabled={isLoading}
       className={`rounded-2xl text-white bg-${color} py-7 px-20 ${
         color == "navyBlue" ? "px-[6.6rem]" : ""
       } text-[20px] font-[Barlow]`}
       {...props}
     >
-      {title}
-      <Loader2 className="animate-spin" />
+      {!isLoading && title}
+      {isLoading && <Loader2 className="animate-spin" />}
     </button>
   );
 }
@@ -106,20 +107,14 @@ export default function () {
     },
     {
       onSuccess: () => {
-<<<<<<< HEAD
-        navigate("/blogs");
-        console.log("created");
-        queryClient.invalidateQueries(["blogs"]);
-
-=======
         console.log("succes of blogs");
         queryClient.invalidateQueries(["blogs"]);
+
         navigate("/blogs");
         toast("Blog Created ...!!!", {
           type: "success",
           style: { backgroundColor: "#1A0E37", color: "white" },
         });
->>>>>>> 85cabd74e7fbb02281e4466a62aa274780c8913e
         // Replace 'blogs' with the name of the query that should be invalidated
         // when the mutation is successful
       },
@@ -136,6 +131,7 @@ export default function () {
       onSuccess: () => {
         navigate("/blogs");
         queryClient.invalidateQueries(["blogs"]);
+        queryClient.invalidateQueries(["blog"]);
         toast("Blog Updated ...!!!", {
           type: "success",
           style: { backgroundColor: "#1A0E37", color: "white" },
@@ -315,6 +311,9 @@ export default function () {
             <Button
               title="Publish"
               color="navyBlue"
+              isLoading={
+                createBlogMutation.isLoading || updateBlogMutation.isLoading
+              }
               onClick={() => {
                 formik.submitForm();
               }}

@@ -5,20 +5,27 @@ import { useParams, useNavigate } from "react-router-dom";
 import { axios } from "../../../lib/axios";
 import Loading from "../../../components/ui/Loading";
 import { toast } from "react-toastify";
+import { Loader2 } from "lucide-react";
 
 const BlogDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
-  const { data, isLoading } = useQuery(["blog", id], async () => {
-    try {
-      const res = await axios.get(`blogs/${id}`);
-      return res.data;
-    } catch (error) {
-      throw error(error);
+  const { data, isLoading } = useQuery(
+    ["blog", id],
+    async () => {
+      try {
+        const res = await axios.get(`blogs/${id}`);
+        return res.data;
+      } catch (error) {
+        throw error(error);
+      }
+    },
+    {
+      refetchOnMount: true,
     }
-  });
+  );
 
   const deleteBlog = useMutation(
     async (id) => {
@@ -64,14 +71,18 @@ const BlogDetail = () => {
             <div className="rounded-md my-5 mx-5 lg:mx-0 text-[24px] font-semibold  ">
               Viewing Blogs
             </div>
-            <div className="space-x-0 space-y-2 sm:space-y-0 sm:space-x-2">
+            <div className="space-x-0 flex items-center space-y-2 sm:space-y-0 sm:space-x-2">
               <button
                 className="bg-[#EB001B] px-4 py-1 rounded-md font-medium font-[Barlow]"
                 onClick={() => {
                   deleteBlog.mutate(id);
                 }}
+                disabled={deleteBlog.isLoading}
               >
-                Delete Blog
+                {!deleteBlog.isLoading && "Delete Blog"}
+                {deleteBlog.isLoading && (
+                  <Loader2 className="animate-spin h-full" />
+                )}
               </button>
 
               <button
