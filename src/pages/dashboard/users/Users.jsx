@@ -59,7 +59,7 @@ function Users() {
         <div className="flex flex-wrap md:flex-nowrap  gap-4  lg:px-0 px-5 lg:pb-1 pb-6  w-full">
           <NavBoxes
             title="Total Distributors"
-            counts={users?.length}
+            counts={contact?.length}
             ratio="24"
             duration="Overall"
             onClick={() => handleUserTable("contact")}
@@ -85,11 +85,10 @@ function Users() {
         </div>
         <div className="border-t-0 border-x-2 border-b-2   border-[#311A67]">
           <div className="rounded-md h-full">
-            {activeApi === "users" ? (
-              <UserTable columns={columns} data={users ?? []} />
-            ) : (
-              <UserTable columns={Playercolumns} data={contact ?? []} />
-            )}
+            <UserTable
+              columns={activeApi === "users" ? columns : Playercolumns}
+              data={activeApi === "users" ? users : contact ?? []}
+            />
           </div>
         </div>
       </div>

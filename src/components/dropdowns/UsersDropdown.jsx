@@ -13,20 +13,23 @@ import {
 } from "../ui/dropdown-menu";
 import { useState } from "react";
 
-export function DropdownUsers() {
+export function DropdownUsers({ onSelectedOption, selectedOption }) {
   const months = [
-    { label: "User 1", value: "1" },
-    { label: "User 2", value: "2" },
-    { label: "User 3", value: "3" },
+    { label: "Player", value: "players" },
+    { label: "Distributer", value: "distributer" },
+    { label: "Subscribers", value: "subscribers" },
   ];
 
-  const [selectedMonth, setSelectedMonth] = useState("1");
+  const [selectedMonth, setSelectedMonth] = useState("playerGraph");
+  const selectedOptionLabel = months.find(
+    (m) => m.value === selectedMonth
+  )?.label;
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
         <div className="text-white items-center bg-skyBlue justify-between rounded-3xl px-4 py-2 flex">
-          <div className="px-2 font-semibold">Users</div>
+          <div className="px-2 font-semibold">{selectedOption}</div>
           <ChevronDown size={20} />
         </div>
       </DropdownMenuTrigger>
@@ -34,11 +37,10 @@ export function DropdownUsers() {
         {months.map((m) => {
           return (
             <DropdownMenuCheckboxItem
+              key={m.value}
               className="border-b-white  border-b last:border-0"
-              checked={m.value == selectedMonth}
-              onCheckedChange={() => {
-                setSelectedMonth(m.value);
-              }}
+              checked={m.value === selectedMonth}
+              onCheckedChange={() => onSelectedOption(m.value)}
             >
               {m.label}
             </DropdownMenuCheckboxItem>

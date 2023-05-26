@@ -23,10 +23,7 @@ export const Playercolumns = [
     accessorKey: "message",
     header: "Message",
   },
-  {
-    accessorKey: "unlockMyBonusCheck",
-    header: "Phone",
-  },
+
   {
     accessorKey: "unlockMyBonusCheck",
     header: "Check Updates Received ",

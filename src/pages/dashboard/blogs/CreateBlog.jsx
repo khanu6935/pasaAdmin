@@ -104,8 +104,9 @@ export default function () {
     {
       onSuccess: () => {
         navigate("/blogs");
+        console.log("created");
         queryClient.invalidateQueries(["blogs"]);
-        navigate("/blogs");
+
         // Replace 'blogs' with the name of the query that should be invalidated
         // when the mutation is successful
       },
@@ -120,7 +121,6 @@ export default function () {
     },
     {
       onSuccess: () => {
-        navigate("/blogs");
         navigate("/blogs");
         queryClient.invalidateQueries(["blogs"]);
         // Replace 'blogs' with the name of the query that should be invalidated
