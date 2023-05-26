@@ -4,6 +4,7 @@ import {
   ArrowUpFromLineIcon,
   ChevronDown,
   Eye,
+  Loader2,
   Pencil,
   Trash,
 } from "lucide-react";
@@ -70,8 +71,12 @@ export const DeleteModal = ({ isModalOpen, handleModalClose }) => {
                 deleteBlog.mutate(isModalOpen);
                 handleModalClose();
               }}
+              disabled={deleteBlog.isLoading}
             >
-              Delete
+              {!deleteBlog.isLoading && "Delete"}
+              {deleteBlog.isLoading && (
+                <Loader2 className="animate-spin h-full" />
+              )}
             </button>
           </div>
         </div>

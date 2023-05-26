@@ -11,7 +11,7 @@ function HomePage() {
   const [playerMonth, setPlayerMonth] = useState([]);
   const [playerCount, setPlayerCount] = useState([]);
   const [selectedOption, setSelectedOption] = useState("players");
-  const [selectDays, setSelectDays] = useState(50);
+  const [selectDays, setSelectDays] = useState(90);
   const [selectedUser, setSelectedUser] = useState(null);
 
   const handleNavBoxes = (title) => {

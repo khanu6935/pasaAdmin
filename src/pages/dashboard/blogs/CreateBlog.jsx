@@ -14,16 +14,19 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { axios } from "../../../lib/axios";
 import { useEffect } from "react";
 import { toast } from "react-toastify";
+import { Loader2 } from "lucide-react";
 
-function Button({ title, color, ...props }) {
+function Button({ isLoading, title, color, ...props }) {
   return (
     <button
+      disabled={isLoading}
       className={`rounded-2xl text-white bg-${color} py-7 px-20 ${
         color == "navyBlue" ? "px-[6.6rem]" : ""
       } text-[20px] font-[Barlow]`}
       {...props}
     >
-      {title}
+      {!isLoading && title}
+      {isLoading && <Loader2 className="animate-spin" />}
     </button>
   );
 }
@@ -106,6 +109,7 @@ export default function () {
       onSuccess: () => {
         console.log("succes of blogs");
         queryClient.invalidateQueries(["blogs"]);
+
         navigate("/blogs");
         toast("Blog Created ...!!!", {
           type: "success",
@@ -127,6 +131,7 @@ export default function () {
       onSuccess: () => {
         navigate("/blogs");
         queryClient.invalidateQueries(["blogs"]);
+        queryClient.invalidateQueries(["blog"]);
         toast("Blog Updated ...!!!", {
           type: "success",
           style: { backgroundColor: "#1A0E37", color: "white" },
@@ -306,6 +311,9 @@ export default function () {
             <Button
               title="Publish"
               color="navyBlue"
+              isLoading={
+                createBlogMutation.isLoading || updateBlogMutation.isLoading
+              }
               onClick={() => {
                 formik.submitForm();
               }}
