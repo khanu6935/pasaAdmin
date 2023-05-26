@@ -1,11 +1,18 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Header, NavBoxes, ApexChart } from "../../../components";
 import { DropdownMonths } from "../../../components/dropdowns/MonthlyFilterDropdown";
 import { DropdownUsers } from "../../../components/dropdowns/UsersDropdown";
 import { useNavigate } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+import { axios } from "../../../lib/axios";
 
 function HomePage() {
   const navigate = useNavigate();
+  const [playerMonth, setPlayerMonth] = useState([]);
+  const [playerCount, setPlayerCount] = useState([]);
+  const [selectedOption, setSelectedOption] = useState("players");
+  const [selectDays, setSelectDays] = useState(50);
+  const [selectedUser, setSelectedUser] = useState(null);
 
   const handleNavBoxes = (title) => {
     if (title === "Contact Submissions") {
@@ -17,6 +24,76 @@ function HomePage() {
     } else if (title === "Distributor Signup") {
       navigate("/users");
     }
+  };
+
+  const { data: users } = useQuery(["users"], async () => {
+    try {
+      const res = await axios.get(
+        "/dashboardstats/count/playersSignup-thisMonth"
+      );
+      return res.data;
+    } catch (error) {
+      console.log("error>>>", error);
+    }
+  });
+
+  const { data: contact } = useQuery(["contact"], async () => {
+    try {
+      const res = await axios.get(
+        "/dashboardstats/count/distributerSignup-thisMonth"
+      );
+      return res.data;
+    } catch (error) {
+      throw new Error(error);
+    }
+  });
+
+  const { data: submissions, isLoading } = useQuery(
+    ["submissions"],
+    async () => {
+      try {
+        const res = await axios.get("/dashboardstats/count/contactSubmissions");
+        return res.data;
+      } catch (error) {
+        throw new Error(error);
+      }
+    }
+  );
+
+  const { data: subscribers } = useQuery(["subscribers"], async () => {
+    try {
+      const res = await axios.get(
+        "/dashboardstats/count/subscribers-thisMonth"
+      );
+      return res.data;
+    } catch (error) {
+      throw new Error(error);
+    }
+  });
+
+  useEffect(() => {
+    const getUserData = async () => {
+      try {
+        const res = await axios.get(
+          `/dashboardstats/graph/${selectedOption}?days=${selectDays}`
+        );
+        const data = res.data;
+        setPlayerMonth(data?.map((Item) => Item.month) || []);
+        setPlayerCount(data?.map((Item) => Item.count) || []);
+      } catch (error) {
+        console.log("error>>>", error);
+      }
+    };
+    getUserData();
+  }, [selectedOption, selectDays]);
+
+  const handleOptionSelect = (option) => {
+    setSelectedOption(option);
+    setSelectedUser(null);
+  };
+
+  const handleUserSelect = (user) => {
+    setSelectedUser(user);
   };
 
   return (
@@ -33,28 +110,28 @@ function HomePage() {
           <div className="flex flex-wrap md:flex-nowrap  gap-7  lg:px-0 px-5  w-full">
             <NavBoxes
               title="Contact Submissions"
-              counts="50,002"
+              counts={submissions ? submissions.count : "00"}
               ratio="24"
               duration="Overall"
               onClick={() => handleNavBoxes("Contact Submissions")}
             />
             <NavBoxes
               title="Subscribers"
-              counts="5000"
+              counts={subscribers ? subscribers.count : "00"}
               ratio="24"
               duration="This Month"
               onClick={() => handleNavBoxes("Subscribers")}
             />
             <NavBoxes
               title="Player Signup"
-              counts="5000"
+              counts={users ? users.count : "00"}
               ratio="24"
               duration="This Month"
               onClick={() => handleNavBoxes("Player Signup")}
             />
             <NavBoxes
               title="Distributor Signup"
-              counts="5000"
+              counts={contact ? contact.count : "00"}
               ratio="24"
               duration="This Month"
               onClick={() => handleNavBoxes("Distributor Signup")}
@@ -70,12 +147,25 @@ function HomePage() {
                 Users
               </h2>
               <div className="flex  space-x-4 ">
-                <DropdownUsers />
-                <DropdownMonths />
+                <DropdownUsers
+                  onSelectedOption={handleOptionSelect}
+                  selectedOption={selectedOption}
+                />
+                <DropdownMonths
+                  setSelectDays={setSelectDays}
+                  selectDays={selectDays}
+                />
               </div>
             </div>
             <div className=" px-2 h-[520px]">
-              <ApexChart />
+              {playerCount.length > 0 && playerMonth.length > 0 && (
+                <ApexChart
+                  playerCount={playerCount}
+                  playerMonth={playerMonth}
+                  selectedOption={selectedOption}
+                  selectDays={selectDays}
+                />
+              )}
             </div>
           </div>
         </div>

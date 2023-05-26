@@ -32,8 +32,6 @@ function Signin() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (email === "admin123@gmail.com" && password === "admin123") {
-      console.log("email>>>", email);
-      console.log("password>>>", password);
       navigate("/home-page");
     } else {
       setError("Please Enter Email and password");
