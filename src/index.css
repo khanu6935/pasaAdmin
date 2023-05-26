@@ -59,22 +59,16 @@
   margin: auto;
 }
 
-table {
-  height: 0px; /*Set any facultative length value to Height (percentage value doesn't work)*/
-  min-height: 70vh;
+.ReactModal__Overlay {
+  background-color: rgba(25, 25, 25, 0.75) !important;
 }
-.ReactModal__Overlay{
-      background-color: rgba(25, 25, 25, 0.75) !important;
-}
-
-
 
 @media (min-width: 768px) {
-.ReactModal__Content {
+  .ReactModal__Content {
     position: relative;
     inset: auto;
-    border: 2px solid #016BE6 !important;
-    background: #01152D !important;
+    border: 2px solid #016be6 !important;
+    background: #01152d !important;
     overflow: auto;
     border-radius: 8px !important;
     padding: 20px;
@@ -87,11 +81,11 @@ table {
 }
 
 @media (min-width: 640px) {
-.ReactModal__Content {
+  .ReactModal__Content {
     position: relative;
     inset: auto;
-    border: 2px solid #016BE6 !important;
-    background: #01152D !important;
+    border: 2px solid #016be6 !important;
+    background: #01152d !important;
     overflow: auto;
     border-radius: 8px !important;
     padding: 20px;
@@ -103,11 +97,11 @@ table {
 }
 
 @media (max-width: 640px) {
-.ReactModal__Content {
+  .ReactModal__Content {
     position: relative;
     inset: auto;
-    border: 2px solid #016BE6 !important;
-    background: #01152D !important;
+    border: 2px solid #016be6 !important;
+    background: #01152d !important;
     overflow: auto;
     border-radius: 8px !important;
     padding: 20px;
@@ -119,7 +113,7 @@ table {
   }
 }
 
-.customWidthClass{
+.customWidthClass {
   min-width: 1700px;
   margin: auto;
 }

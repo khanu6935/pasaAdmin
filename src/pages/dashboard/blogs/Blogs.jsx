@@ -11,6 +11,7 @@ import { useQuery } from "@tanstack/react-query";
 import { axios } from "../../../lib/axios";
 import { DataTable } from "../../../components/blogsGrid/data-table";
 import { columns } from "../../../components/blogsGrid/columns";
+import { ToastContainer, toast } from "react-toastify";
 
 function Blogs() {
   function getCurrentItem(currentItems) {
@@ -21,14 +22,20 @@ function Blogs() {
     return currentItems;
   }
 
-  const { data, isLoading } = useQuery(["blogs"], async () => {
-    try {
-      const res = await axios.get("blogs");
-      return res.data;
-    } catch (error) {
-      throw error(error);
+  const { data, isLoading } = useQuery(
+    ["blogs"],
+    async () => {
+      try {
+        const res = await axios.get("blogs");
+        return res.data;
+      } catch (error) {
+        throw error(error);
+      }
+    },
+    {
+      refetchOnMount: true,
     }
-  });
+  );
 
   return (
     <div className="bg-primary min-h-screen flex flex-col">
@@ -42,11 +49,16 @@ function Blogs() {
         <div className="flex flex-wrap md:flex-nowrap  gap-4  lg:px-0 px-5 lg:pb-1 pb-6  w-full">
           <NavBoxes
             title="Total Blogs"
-            counts="1000"
+            counts={data?.length ?? 0}
             ratio="24"
             duration="Overall"
           />
-          <NavBoxes title="Blogs" counts="10" ratio="24" duration="Overall" />
+          <NavBoxes
+            title="Blogs"
+            counts={data?.length ?? 0}
+            ratio="24"
+            duration="Overall"
+          />
           <NavBoxes createTitle="Create Blog" createBlog={true} />
         </div>
         <div
@@ -62,7 +74,11 @@ function Blogs() {
         </div>
         <div className="border-t-0 flex-grow border-x-2 border-b-2 border-[#311A67]">
           <div className="rounded-md overflow-x-auto flex-grow">
-            <DataTable columns={columns} data={data ?? []} />
+            <DataTable
+              columns={columns}
+              data={data ?? []}
+              isLoading={isLoading}
+            />
           </div>
         </div>
       </div>
