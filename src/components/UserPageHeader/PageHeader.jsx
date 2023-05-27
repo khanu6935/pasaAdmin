@@ -26,7 +26,7 @@ const PageHeader = ({ title, placeholder, dropDown, filter }) => {
           <input
             type="text"
             id="input-group-1"
-            class="outline-0  bg-secondry  text-white  text-sm  rounded-2xl  block w-full pl-2 p-2.5   "
+            className="outline-0  bg-secondry  text-white  text-sm  rounded-2xl  block w-full pl-2 p-2.5   "
             placeholder={placeholder}
           />
         </div>

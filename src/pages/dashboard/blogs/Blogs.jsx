@@ -12,6 +12,7 @@ import { axios } from "../../../lib/axios";
 import { DataTable } from "../../../components/blogsGrid/data-table";
 import { columns } from "../../../components/blogsGrid/columns";
 import { ToastContainer, toast } from "react-toastify";
+import { LoaderSpiner } from "../../../components/loader/LoaderSpiner";
 
 function Blogs() {
   function getCurrentItem(currentItems) {
@@ -49,13 +50,13 @@ function Blogs() {
         <div className="flex flex-wrap md:flex-nowrap  gap-4  lg:px-0 px-5 lg:pb-1 pb-6  w-full">
           <NavBoxes
             title="Total Blogs"
-            counts={data?.length ?? 0}
+            counts={isLoading ? <LoaderSpiner /> : data?.length ?? 0}
             ratio="24"
             duration="Overall"
           />
           <NavBoxes
             title="Blogs"
-            counts={data?.length ?? 0}
+            counts={isLoading ? <LoaderSpiner /> : data?.length ?? 0}
             ratio="24"
             duration="Overall"
           />
