@@ -15,8 +15,9 @@ import {
 } from "../table/table";
 import { Pagination } from "../table/Pagination";
 import { useMemo } from "react";
+import { Loader } from "../ui/Loading";
 
-export function UserTable({ columns, data }) {
+export function UserTable({ columns, data, isLoading }) {
   const table = useReactTable({
     data,
     columns,
@@ -49,35 +50,47 @@ export function UserTable({ columns, data }) {
               </TableRow>
             ))}
           </TableHeader>
-          <TableBody>
-            {table.getRowModel().rows?.length ? (
-              table.getRowModel().rows.map((row) => (
-                <TableRow
-                  key={row.id}
-                  data-state={row.getIsSelected() && "selected"}
-                  className="h-20"
-                >
-                  {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id}>
-                      {flexRender(
-                        cell.column.columnDef.cell,
-                        cell.getContext()
-                      )}
-                    </TableCell>
-                  ))}
+
+          {isLoading ? (
+            <TableRow className="min-h-[70vh] text-center">
+              <TableCell
+                colSpan={columns.length}
+                className="h-[70vh]   text-center"
+              >
+                <Loader />
+              </TableCell>
+            </TableRow>
+          ) : (
+            <TableBody>
+              {table.getRowModel().rows?.length ? (
+                table.getRowModel().rows.map((row) => (
+                  <TableRow
+                    key={row.id}
+                    data-state={row.getIsSelected() && "selected"}
+                    className="h-20"
+                  >
+                    {row.getVisibleCells().map((cell) => (
+                      <TableCell key={cell.id}>
+                        {flexRender(
+                          cell.column.columnDef.cell,
+                          cell.getContext()
+                        )}
+                      </TableCell>
+                    ))}
+                  </TableRow>
+                ))
+              ) : (
+                <TableRow>
+                  <TableCell
+                    colSpan={columns.length}
+                    className="h-24 text-center"
+                  >
+                    No results.
+                  </TableCell>
                 </TableRow>
-              ))
-            ) : (
-              <TableRow>
-                <TableCell
-                  colSpan={columns.length}
-                  className="h-24 text-center"
-                >
-                  No results.
-                </TableCell>
-              </TableRow>
-            )}
-          </TableBody>
+              )}
+            </TableBody>
+          )}
         </Table>
       </div>
       <Pagination table={table} />

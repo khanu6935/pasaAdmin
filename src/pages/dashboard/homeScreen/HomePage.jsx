@@ -5,6 +5,7 @@ import { DropdownUsers } from "../../../components/dropdowns/UsersDropdown";
 import { useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { axios } from "../../../lib/axios";
+import { LoaderSpiner } from "../../../components/loader/LoaderSpiner";
 
 function HomePage() {
   const navigate = useNavigate();
@@ -26,27 +27,39 @@ function HomePage() {
     }
   };
 
-  const { data: users } = useQuery(["users"], async () => {
-    try {
-      const res = await axios.get(
-        "/dashboardstats/count/playersSignup-thisMonth"
-      );
-      return res.data;
-    } catch (error) {
-      console.log("error>>>", error);
+  const { data: users, isLoading: loading } = useQuery(
+    ["users"],
+    async () => {
+      try {
+        const res = await axios.get(
+          "/dashboardstats/count/playersSignup-thisMonth"
+        );
+        return res.data;
+      } catch (error) {
+        console.log("error>>>", error);
+      }
+    },
+    {
+      refetchOnMount: true,
     }
-  });
+  );
 
-  const { data: contact } = useQuery(["contact"], async () => {
-    try {
-      const res = await axios.get(
-        "/dashboardstats/count/distributerSignup-thisMonth"
-      );
-      return res.data;
-    } catch (error) {
-      throw new Error(error);
+  const { data: contact, isLoading: isload } = useQuery(
+    ["contact"],
+    async () => {
+      try {
+        const res = await axios.get(
+          "/dashboardstats/count/distributerSignup-thisMonth"
+        );
+        return res.data;
+      } catch (error) {
+        throw new Error(error);
+      }
+    },
+    {
+      refetchOnMount: true,
     }
-  });
+  );
 
   const { data: submissions, isLoading } = useQuery(
     ["submissions"],
@@ -57,19 +70,28 @@ function HomePage() {
       } catch (error) {
         throw new Error(error);
       }
+    },
+    {
+      refetchOnMount: true,
     }
   );
 
-  const { data: subscribers } = useQuery(["subscribers"], async () => {
-    try {
-      const res = await axios.get(
-        "/dashboardstats/count/subscribers-thisMonth"
-      );
-      return res.data;
-    } catch (error) {
-      throw new Error(error);
+  const { data: subscribers, isLoading: load } = useQuery(
+    ["subscribers"],
+    async () => {
+      try {
+        const res = await axios.get(
+          "/dashboardstats/count/subscribers-thisMonth"
+        );
+        return res.data;
+      } catch (error) {
+        throw new Error(error);
+      }
+    },
+    {
+      refetchOnMount: true,
     }
-  });
+  );
 
   useEffect(() => {
     const getUserData = async () => {
@@ -110,28 +132,40 @@ function HomePage() {
           <div className="flex flex-wrap md:flex-nowrap  gap-7  lg:px-0 px-5  w-full">
             <NavBoxes
               title="Contact Submissions"
-              counts={submissions ? submissions.count : "00"}
+              counts={
+                isLoading ? (
+                  <LoaderSpiner />
+                ) : submissions ? (
+                  submissions.count
+                ) : (
+                  "00"
+                )
+              }
               ratio="24"
               duration="Overall"
               onClick={() => handleNavBoxes("Contact Submissions")}
             />
             <NavBoxes
               title="Subscribers"
-              counts={subscribers ? subscribers.count : "00"}
+              counts={
+                load ? <LoaderSpiner /> : subscribers ? subscribers.count : "00"
+              }
               ratio="24"
               duration="This Month"
               onClick={() => handleNavBoxes("Subscribers")}
             />
             <NavBoxes
               title="Player Signup"
-              counts={users ? users.count : "00"}
+              counts={loading ? <LoaderSpiner /> : users ? users.count : "00"}
               ratio="24"
               duration="This Month"
               onClick={() => handleNavBoxes("Player Signup")}
             />
             <NavBoxes
               title="Distributor Signup"
-              counts={contact ? contact.count : "00"}
+              counts={
+                isload ? <LoaderSpiner /> : contact ? contact.count : "00"
+              }
               ratio="24"
               duration="This Month"
               onClick={() => handleNavBoxes("Distributor Signup")}

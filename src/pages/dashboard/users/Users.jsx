@@ -5,47 +5,55 @@ import { columns } from "../../../components/userGrid/columns";
 import { useQuery } from "@tanstack/react-query";
 import { axios } from "../../../lib/axios";
 import { Playercolumns } from "../../../components/userGrid/playerColumns";
+import { LoaderSpiner } from "../../../components/loader/LoaderSpiner";
 
 function Users() {
   const [activeApi, setActiveApi] = useState("contact");
-  const { data: contact, isLoading } = useQuery(["contact"], async () => {
-    try {
-      const res = await axios.get("/contact");
-      const apidata = res.data;
-      const formattedData = apidata.map((item) => ({
-        ...item,
-        unlockMyBonusCheck: Boolean(item.unlockMyBonusCheck),
-      }));
+  const { data: contact, isLoading } = useQuery(
+    ["contact"],
+    async () => {
+      try {
+        const res = await axios.get("/contact");
+        const apidata = res.data;
+        const formattedData = apidata.map((item) => ({
+          ...item,
+          unlockMyBonusCheck: Boolean(item.unlockMyBonusCheck),
+        }));
 
-      return formattedData;
-    } catch (error) {
-      throw new Error(error);
+        return formattedData;
+      } catch (error) {
+        throw new Error(error);
+      }
+    },
+    {
+      refetchOnMount: true,
     }
-  });
+  );
 
-  const { data: users } = useQuery(["users"], async () => {
-    try {
-      const res = await axios.get("/users");
-      const apidata = res.data;
-      const formattedData = apidata.map((item) => ({
-        ...item,
-        unlockMyBonusCheck: Boolean(item.unlockMyBonusCheck),
-      }));
+  const { data: users, isLoading: userLoading } = useQuery(
+    ["users"],
+    async () => {
+      try {
+        const res = await axios.get("/users");
+        const apidata = res.data;
+        const formattedData = apidata.map((item) => ({
+          ...item,
+          unlockMyBonusCheck: Boolean(item.unlockMyBonusCheck),
+        }));
 
-      return formattedData;
-    } catch (error) {
-      throw new Error(error);
+        return formattedData;
+      } catch (error) {
+        throw new Error(error);
+      }
+    },
+    {
+      refetchOnMount: true,
     }
-  });
+  );
 
   const handleUserTable = (api) => {
     setActiveApi(api);
   };
-
-  console.log("users>>", users);
-  console.log("contact>>", contact);
-
-  console.log("activeApi", activeApi);
 
   return (
     <div className="bg-primary min-h-screen">
@@ -59,14 +67,14 @@ function Users() {
         <div className="flex flex-wrap md:flex-nowrap  gap-4  lg:px-0 px-5 lg:pb-1 pb-6  w-full">
           <NavBoxes
             title="Total Distributors"
-            counts={contact?.length}
+            counts={isLoading ? <LoaderSpiner /> : contact?.length}
             ratio="24"
             duration="Overall"
             onClick={() => handleUserTable("contact")}
           />
           <NavBoxes
             title="Total Players"
-            counts={users?.length}
+            counts={userLoading ? <LoaderSpiner /> : users?.length}
             ratio="24"
             duration="Overall"
             onClick={() => handleUserTable("users")}
@@ -88,6 +96,7 @@ function Users() {
             <UserTable
               columns={activeApi === "users" ? columns : Playercolumns}
               data={activeApi === "users" ? users : contact ?? []}
+              isLoading={isLoading}
             />
           </div>
         </div>

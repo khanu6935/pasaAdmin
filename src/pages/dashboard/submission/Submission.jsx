@@ -9,6 +9,7 @@ import { SubmissionTable } from "../../../components/SubmissionGrid/table-data";
 import { columns } from "../../../components/SubmissionGrid/columns";
 import { useQuery } from "@tanstack/react-query";
 import { axios } from "../../../lib/axios";
+import { LoaderSpiner } from "../../../components/loader/LoaderSpiner";
 
 function Submission() {
   const { data: submissions, isLoading } = useQuery(
@@ -20,6 +21,9 @@ function Submission() {
       } catch (error) {
         throw new Error(error);
       }
+    },
+    {
+      refetchOnMount: true,
     }
   );
 
@@ -35,7 +39,7 @@ function Submission() {
         <div className="flex flex-wrap md:flex-nowrap  gap-4  lg:px-0 px-5 lg:pb-1 pb-6  w-full">
           <NavBoxes
             title="Contacts"
-            counts={submissions?.length}
+            counts={isLoading ? <LoaderSpiner /> : submissions?.length}
             showIcon={false}
           />
         </div>
@@ -52,7 +56,11 @@ function Submission() {
         </div>
         <div className="border-t-0 border-x-2 border-b-2 border-[#311A67]">
           <div className="rounded-md overflow-x-auto">
-            <SubmissionTable columns={columns} data={submissions ?? []} />
+            <SubmissionTable
+              columns={columns}
+              data={submissions ?? []}
+              isLoading={isLoading}
+            />
           </div>
         </div>
       </div>

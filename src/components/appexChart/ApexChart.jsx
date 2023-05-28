@@ -6,14 +6,10 @@ import { useEffect } from "react";
 
 function Labelchart({ playerCount }) {
   return (
-    <div class="  w-[8.5rem] rounded-md bg-secondry px-4 py-3 text-white">
-      <p class="text-md font-[Barlow]">Users</p>
-      <div class="flex items-center space-x-1 text-xl font-bold">
+    <div className="w-[8.5rem] rounded-md bg-secondry px-4 py-3 text-white">
+      <p className="text-md font-[Barlow]">Users</p>
+      <div className="flex items-center space-x-1 text-xl font-bold">
         <span className="font-[Barlow]">{playerCount}</span>
-        <span class="flex h-5 w-12 items-center justify-center rounded-2xl bg-yellow-500 font-[Barlow] px-3 text-center text-xs mr-2">
-          24
-          <RxArrowTopRight color="black" />
-        </span>
       </div>
     </div>
   );
@@ -64,7 +60,8 @@ const ApexChart = ({ playerCount, playerMonth }) => {
       show: false,
     },
     tooltip: {
-      custom: function (params) {
+      custom: function ({ series, seriesIndex, dataPointIndex }) {
+        const playerCount = series[seriesIndex][dataPointIndex];
         return renderToString(<Labelchart playerCount={playerCount} />);
       },
     },
@@ -130,7 +127,8 @@ const ApexChart = ({ playerCount, playerMonth }) => {
         show: false,
       },
       tooltip: {
-        custom: function (params) {
+        custom: function ({ series, seriesIndex, dataPointIndex, w }) {
+          const playerCount = series[seriesIndex][dataPointIndex];
           return renderToString(<Labelchart playerCount={playerCount} />);
         },
       },

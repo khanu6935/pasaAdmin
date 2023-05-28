@@ -39,10 +39,11 @@ const NavBoxes = ({
               <p className="text-textWhite">{createTitle}</p>
             </Link>
           ) : (
-            <p className="bg-primaryYellow w-12 h-6 flex justify-center items-center text-base font-medium rounded-2xl">
-              {ratio}
-              <RxArrowTopRight />
-            </p>
+            // <p className="bg-primaryYellow w-12 h-6 flex justify-center items-center text-base font-medium rounded-2xl">
+            //   {ratio}
+            //   <RxArrowTopRight />
+            // </p>
+            <p></p>
           )}
         </div>
         <p className="text-textWhite text-sm font-semibold font-[Barlow]">
