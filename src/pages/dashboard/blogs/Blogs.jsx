@@ -12,11 +12,8 @@ import { axios } from "../../../lib/axios";
 import { DataTable } from "../../../components/blogsGrid/data-table";
 import { columns } from "../../../components/blogsGrid/columns";
 import { ToastContainer, toast } from "react-toastify";
-<<<<<<< HEAD
 import useDebounce from "../../../Hooks/useDebounce";
-=======
 import { LoaderSpiner } from "../../../components/loader/LoaderSpiner";
->>>>>>> 40c4a6e5d763bd55fbf3db3e57bbd70be887a565
 
 function Blogs() {
   const [search, setSearch] = useState("");
