@@ -12,9 +12,13 @@ import { axios } from "../../../lib/axios";
 import { DataTable } from "../../../components/blogsGrid/data-table";
 import { columns } from "../../../components/blogsGrid/columns";
 import { ToastContainer, toast } from "react-toastify";
+import useDebounce from "../../../Hooks/useDebounce";
 import { LoaderSpiner } from "../../../components/loader/LoaderSpiner";
 
 function Blogs() {
+  const [search, setSearch] = useState("");
+  const searchParam = useDebounce(search, 500);
+
   function getCurrentItem(currentItems) {
     while (currentItems.length < 7) {
       currentItems.push({});
@@ -24,10 +28,10 @@ function Blogs() {
   }
 
   const { data, isLoading } = useQuery(
-    ["blogs"],
+    ["blogs", searchParam],
     async () => {
       try {
-        const res = await axios.get("blogs");
+        const res = await axios.get(`blogs?keyword=${searchParam}`);
         return res.data;
       } catch (error) {
         throw error(error);
@@ -71,7 +75,10 @@ function Blogs() {
             placeholder="Search Blog"
             dropDown="Player"
             filter="Filter"
+            value={search}
+            setValue={(e) => setSearch(e.target.value)}
           />
+          {search}
         </div>
         <div className="border-t-0 flex-grow border-x-2 border-b-2 border-[#311A67]">
           <div className="rounded-md overflow-x-auto flex-grow">
