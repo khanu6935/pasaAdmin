@@ -28,10 +28,10 @@ export const columns = [
     },
   },
 
-  {
-    id: "actions",
-    cell: ({ row }) => {
-      return <BlogActionsDropdown />;
-    },
-  },
+  // {
+  //   id: "actions",
+  //   cell: ({ row }) => {
+  //     return <BlogActionsDropdown />;
+  //   },
+  // },
 ];

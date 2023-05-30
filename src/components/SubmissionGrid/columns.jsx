@@ -5,7 +5,7 @@ import { CustomModal } from "../customModal/CustomModal";
 import { useState } from "react";
 import { formatDate } from "../../utils/formateDate";
 
-export const ViewMessageModal = () => {
+export const ViewMessageModal = ({ data }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleModalOpen = () => {
@@ -28,15 +28,8 @@ export const ViewMessageModal = () => {
           <h3 className="text-[32px] text-textWhite font-bold font-[Barlow] text-center">
             MESSAGE
           </h3>
-          <p className="text-lg font-normal font-[Barlow] text-textWhite text-justify py-4">
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer
-            efficitur, risus non molestie faucibus, arcu quam efficitur nulla,
-            quis pretium leo turpis id quam. Sed ultricies est sit amet
-            imperdiet pulvinar. Maecenas a tortor vestibulum, posuere nunc sit
-            amet, dictum sapien. Sed tristique neque eros, quis mollis libero
-            consequat sit amet. Vestibulum cursus tortor non odio vestibulum,
-            viverra tristique augue auctor. In mollis risus lectus, quis luctus
-            odio finibus at.
+          <p className="text-lg font-normal font-[Barlow] text-center text-textWhite  py-4">
+            {data.message}
           </p>
         </div>
       </CustomModal>
@@ -74,7 +67,7 @@ export const columns = [
   },
   {
     accessorKey: "message",
-    header: "Subject",
+    header: "Message",
   },
 
   {
@@ -84,10 +77,10 @@ export const columns = [
       return <ViewMessageModal data={row.original} />;
     },
   },
-  {
-    id: "actions",
-    cell: ({ row }) => {
-      return <BlogActionsDropdown />;
-    },
-  },
+  // {
+  //   id: "actions",
+  //   cell: ({ row }) => {
+  //     return <BlogActionsDropdown />;
+  //   },
+  // },
 ];

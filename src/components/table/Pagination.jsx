@@ -6,6 +6,15 @@ import {
 } from "lucide-react";
 
 export function Pagination({ table }) {
+  const pageSize = 10;
+  const totalRecords = table.getFilteredRowModel().rows.length;
+  const currentPageIndex = table.getState().pagination.pageIndex;
+
+  const startRecordIndex = currentPageIndex * pageSize;
+  const endRecordIndex = Math.min(startRecordIndex + pageSize, totalRecords);
+  const showingRecords = table
+    .getFilteredRowModel()
+    .rows.slice(startRecordIndex, endRecordIndex);
   const paginationButtons = [];
   for (let i = 0; i < table.getPageCount(); i++) {
     paginationButtons.push(
@@ -27,7 +36,8 @@ export function Pagination({ table }) {
     <div className="flex items-center text-white justify-between px-4 py-6">
       <div className="flex-1 text-lg  ">
         <p className="text-textWhite font-medium font-[Barlow]">
-          Showing 10 out of {table.getFilteredRowModel().rows.length}
+          Showing {showingRecords.length} out of{" "}
+          {table.getFilteredRowModel().rows.length}
         </p>
       </div>
       <div className="flex items-center space-x-6 lg:space-x-8">

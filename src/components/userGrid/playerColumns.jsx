@@ -34,12 +34,12 @@ export const Playercolumns = [
     },
   },
 
-  {
-    id: "actions",
-    cell: ({ row }) => {
-      console.log(row.original);
+  // {
+  //   id: "actions",
+  //   cell: ({ row }) => {
+  //     console.log(row.original);
 
-      return <BlogActionsDropdown />;
-    },
-  },
+  //     return <BlogActionsDropdown />;
+  //   },
+  // },
 ];
