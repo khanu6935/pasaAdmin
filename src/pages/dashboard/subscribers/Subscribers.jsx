@@ -10,13 +10,16 @@ import { columns } from "../../../components/subscribersGrid/columns";
 import { useQuery } from "@tanstack/react-query";
 import { axios } from "../../../lib/axios";
 import { LoaderSpiner } from "../../../components/loader/LoaderSpiner";
+import useDebounce from "../../../Hooks/useDebounce";
 
 function Subscribers() {
+  const [search, setSearch] = useState("");
+  const searchParam = useDebounce(search, 500);
   const { data: subscribers, isLoading } = useQuery(
-    ["subscribers"],
+    ["subscribers", searchParam],
     async () => {
       try {
-        const res = await axios.get("/newsletter");
+        const res = await axios.get(`/newsletter?keyword=${searchParam}`);
         return res.data;
       } catch (error) {
         throw new Error(error);
@@ -24,6 +27,7 @@ function Subscribers() {
     },
     {
       refetchOnMount: true,
+      refetchInterval: 5000,
     }
   );
 
@@ -53,6 +57,8 @@ function Subscribers() {
             placeholder="Search by name"
             dropDown="Player"
             filter="Filter"
+            value={search}
+            setValue={(e) => setSearch(e.target.value)}
           />
         </div>
         <div className="border-t-0 border-x-2 border-b-2 border-[#311A67]">

@@ -6,35 +6,41 @@ import { useQuery } from "@tanstack/react-query";
 import { axios } from "../../../lib/axios";
 import { Playercolumns } from "../../../components/userGrid/playerColumns";
 import { LoaderSpiner } from "../../../components/loader/LoaderSpiner";
+import useDebounce from "../../../Hooks/useDebounce";
 
 function Users() {
   const [activeApi, setActiveApi] = useState("contact");
+  const [search, setSearch] = useState("");
+  const searchParam = useDebounce(search, 500);
   const { data: contact, isLoading } = useQuery(
-    ["contact"],
+    ["contact".searchParam],
     async () => {
       try {
-        const res = await axios.get("/contact");
+        const res = await axios.get(`/contact`);
         const apidata = res.data;
         const formattedData = apidata.map((item) => ({
           ...item,
           unlockMyBonusCheck: Boolean(item.unlockMyBonusCheck),
         }));
-
-        return formattedData;
+        const filterData = formattedData.filter(
+          (item) => item.purpose === "signup"
+        );
+        return filterData;
       } catch (error) {
         throw new Error(error);
       }
     },
     {
       refetchOnMount: true,
+      refetchInterval: 5000,
     }
   );
 
   const { data: users, isLoading: userLoading } = useQuery(
-    ["users"],
+    ["users", searchParam],
     async () => {
       try {
-        const res = await axios.get("/users");
+        const res = await axios.get(`/users?keyword=${searchParam}`);
         const apidata = res.data;
         const formattedData = apidata.map((item) => ({
           ...item,
@@ -48,6 +54,7 @@ function Users() {
     },
     {
       refetchOnMount: true,
+      refetchInterval: 5000,
     }
   );
 
@@ -85,10 +92,12 @@ function Users() {
           style={{ border: "2px solid #311A67" }}
         >
           <PageHeader
-            title="Players"
+            title={activeApi === "contact" ? "Distribters" : "PLayers"}
             placeholder="Search User By Name , Id or email"
             dropDown="Player"
             filter="Filter"
+            value={search}
+            setValue={(e) => setSearch(e.target.vale)}
           />
         </div>
         <div className="border-t-0 border-x-2 border-b-2   border-[#311A67]">

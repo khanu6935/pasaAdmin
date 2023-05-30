@@ -17,13 +17,17 @@ function Submission() {
     async () => {
       try {
         const res = await axios.get("/contact");
-        return res.data;
+        const filterData = res.data.filter(
+          (item) => item.purpose === "message"
+        );
+        return filterData;
       } catch (error) {
         throw new Error(error);
       }
     },
     {
       refetchOnMount: true,
+      refetchInterval: 5000,
     }
   );
 

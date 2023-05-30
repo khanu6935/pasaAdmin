@@ -39,6 +39,7 @@ function Blogs() {
     },
     {
       refetchOnMount: true,
+      refetchInterval: 5000,
     }
   );
 
