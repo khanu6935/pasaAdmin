@@ -100,8 +100,13 @@ function HomePage() {
           `/dashboardstats/graph/${selectedOption}?days=${selectDays}`
         );
         const data = res.data;
-        setPlayerMonth(data?.map((Item) => Item.month) || []);
-        setPlayerCount(data?.map((Item) => Item.count) || []);
+        const sortedData = data.sort((a, b) => {
+          const monthA = new Date(a.month).getMonth();
+          const monthB = new Date(b.month).getMonth();
+          return monthA - monthB;
+        });
+        setPlayerMonth(sortedData?.map((Item) => Item.month) || []);
+        setPlayerCount(sortedData?.map((Item) => Item.count) || []);
       } catch (error) {
         console.log("error>>>", error);
       }

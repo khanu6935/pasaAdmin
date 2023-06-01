@@ -10,13 +10,16 @@ import { columns } from "../../../components/SubmissionGrid/columns";
 import { useQuery } from "@tanstack/react-query";
 import { axios } from "../../../lib/axios";
 import { LoaderSpiner } from "../../../components/loader/LoaderSpiner";
+import useDebounce from "../../../Hooks/useDebounce";
 
 function Submission() {
+  const [search, setSearch] = useState("");
+  const searchParam = useDebounce(search, 500);
   const { data: submissions, isLoading } = useQuery(
-    ["submissions"],
+    ["submissions", searchParam],
     async () => {
       try {
-        const res = await axios.get("/contact");
+        const res = await axios.get(`/contact?keyword=${searchParam}`);
         const filterData = res.data.filter(
           (item) => item.purpose === "message"
         );
@@ -56,6 +59,8 @@ function Submission() {
             placeholder="Search by name"
             dropDown="Player"
             filter="Filter"
+            value={search}
+            setValue={(e) => setSearch(e.target.value)}
           />
         </div>
         <div className="border-t-0 border-x-2 border-b-2 border-[#311A67]">

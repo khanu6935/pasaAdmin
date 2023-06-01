@@ -13,10 +13,10 @@ function Users() {
   const [search, setSearch] = useState("");
   const searchParam = useDebounce(search, 500);
   const { data: contact, isLoading } = useQuery(
-    ["contact".searchParam],
+    ["contact", searchParam],
     async () => {
       try {
-        const res = await axios.get(`/contact`);
+        const res = await axios.get(`/contact?keyword=${searchParam}`);
         const apidata = res.data;
         const formattedData = apidata.map((item) => ({
           ...item,
