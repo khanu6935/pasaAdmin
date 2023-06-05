@@ -25,6 +25,8 @@ export function DropdownUsers({ onSelectedOption, selectedOption }) {
     (m) => m.value === selectedMonth
   )?.label;
 
+  console.log("pasaadmin");
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
