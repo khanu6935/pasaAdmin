@@ -105,6 +105,7 @@ export function BlogActionsDropdown({ id }) {
   ];
 
   const [selectedMonth, setSelectedMonth] = useState("1");
+  console.log("selectedMonth>>", selectedMonth);
 
   return (
     <DropdownMenu className="cursor-pointer">
